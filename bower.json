@@ -1,0 +1,23 @@
+{
+  "name": "framgia_elearning",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Dinh Ky <dinhky0204@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dinhky0204/framgia_elearning",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests",
+    "public/assets/bower"
+  ],
+  "dependencies": {
+    "bootstrap": "boostrap#^3.3.7",
+    "components-font-awesome": "^4.7.0"
+  }
+}
