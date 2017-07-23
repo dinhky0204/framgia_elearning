@@ -17,7 +17,6 @@
     <link href="{{ asset('css/plugins.css') }}" rel="stylesheet">
     <link href="{{ asset('css/themes.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    {{--<link href="{{ asset('js/vendor/modernizr-respond.min.js') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div class="page-container">
@@ -97,41 +96,6 @@
                     <li>
                         <a href="about.html">About</a>
                     </li>
-                    @if (Auth::guest())
-                        <li>
-                            <a href="{{route('login')}}" class="btn btn-primary">Log In</a>
-                        </li>
-                        <li>
-                            <a href="{{route('register')}}" class="btn btn-success">Sign Up</a>
-                        </li>
-                    @else
-
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="{{ route('show_profile') }}">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
                     <li>
                         <a href="javascript:void(0)" class="site-nav-sub"><i
                                     class="fa fa-angle-down site-nav-arrow"></i>@lang('auth.language')</a>
@@ -144,6 +108,46 @@
                             </li>
                         </ul>
                     </li>
+                    @if (Auth::guest())
+                        <li>
+                            <a href="{{route('login')}}" class="btn btn-primary">Log In</a>
+                        </li>
+                        <li>
+                            <a href="{{route('register')}}" class="btn btn-success">Sign Up</a>
+                        </li>
+                    @else
+
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
+                                <img src="/avatar/{{Auth::user()->avatar}}" alt="" style="width:32px; height: 32px; border-radius: 50%;">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{ route('show_profile') }}">
+                                        <i class="fa fa-btn fa-user">
+                                            Profile
+                                        </i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-btn fa-sign-out">
+                                            Logout
+                                        </i>
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
 
                 </ul>
                 <!-- END Main Menu -->
@@ -156,6 +160,7 @@
 
 
 <!-- Scripts -->
+<script src="{{ asset('assets/bower/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

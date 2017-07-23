@@ -31,5 +31,13 @@ return [
     'sendmail' => 'Send Password Reset Link',
     'checklink' => 'Please click the link to active account.',
     'reset-pass' => 'Please click the link to reset password.',
-    
+    'edit-profile' => 'Edit Profile',
+    'achievement' => 'Achievement',
+    'point' => 'Point',
+    'course' => 'Course',
+    'friend' => 'Friend',
+    'following' => 'Following',
+    'follower' => 'Follower',
+    'upload-avatar' => 'Upload new picture',
+
 ];
