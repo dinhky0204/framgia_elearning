@@ -12,7 +12,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\FollowStudent;
 use App\Models\StudentCourseEnrollment;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Image;
 
 class ProfileController extends Controller
 {
@@ -33,6 +36,27 @@ class ProfileController extends Controller
 
     public function editProfile()
     {
-        return view('auth.editProfile');
+        $user = Auth::user();
+        return view('auth.editProfile', ['user' => $user]);
+    }
+
+    public function saveProfile(Request $request)
+    {
+        $user = Auth::user();
+        if (Hash::check($request->get('old-password'), $user['password']) && $request->get('new-password') == $request->get('confirm-new-password')) {
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $filename = time() . '.' . $avatar->getClientOriginalExtension();
+                Image::make($avatar)->resize(300, 300)->save(public_path('avatar/' . $filename));
+                $user->avatar = $filename;
+            }
+            $user->password = Hash::make($request->get('new-password'));
+            $user->name = $request->get('full-name');
+            $user->save();
+
+            return view('home', ['user' => $user]);
+        } else {
+            return redirect()->back();
+        }
     }
 }

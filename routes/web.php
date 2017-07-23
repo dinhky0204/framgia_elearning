@@ -26,3 +26,4 @@ Route::get('/passwordreset', 'Auth\ResetPasswordController@reset')->name('resetp
 Route::post('/passwordreset/sendmail', 'Auth\ResetPasswordController@sendmailToReset')->name('sendmailToReset');
 Route::get('/profile', 'Auth\ProfileController@showProfile')->name('show_profile');
 Route::get('/profile/edit', 'Auth\ProfileController@editProfile')->name('edit_profile');
+Route::post('/profile/save', 'Auth\ProfileController@saveProfile')->name('profile-save');
