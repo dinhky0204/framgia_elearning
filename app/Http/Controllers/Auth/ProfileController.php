@@ -43,19 +43,32 @@ class ProfileController extends Controller
     public function saveProfile(Request $request)
     {
         $user = Auth::user();
-        if (Hash::check($request->get('old-password'), $user['password']) && $request->get('new-password') == $request->get('confirm-new-password')) {
+        if (Hash::check($request->get('old-password'), $user['password'])) {
             if ($request->hasFile('avatar')) {
                 $avatar = $request->file('avatar');
                 $filename = time() . '.' . $avatar->getClientOriginalExtension();
                 Image::make($avatar)->resize(300, 300)->save(public_path('avatar/' . $filename));
                 $user->avatar = $filename;
+                $user->save();
             }
-            $user->password = bcrypt($request->get('new-password'));
+            if($request->has('new-password')) {
+                if($request->get('new-password') == $request->get('confirm-new-password')) {
+                    $user->password = Hash::make($request->get('new-password'));
+                    $user->save();
+                    return view('home');
+                }
+                else {
+                    return redirect()->back()->withInput();
+                }
+            }
+            if(!$request->hasFile('avatar') && !$request->has('new-password') && $user['name'] == $request->get('full-name')) {
+                return redirect()->back()->withInput();
+            }
             $user->name = $request->get('full-name');
             $user->save();
-            return view('home', ['user' => $user]);
+            return view('home');
         } else {
-            return redirect()->back();
+            return redirect()->back()->withInput();
         }
     }
 }

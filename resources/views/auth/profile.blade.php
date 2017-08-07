@@ -3,7 +3,7 @@
 @section('content')
     <div class="profile-container">
         <div class="profile-basic">
-            <img src="/avatar/default.jpg" alt="Avatar" class="img-circle">
+            <img src="/avatar/{{$user['avatar']}}" alt="Avatar" class="img-circle">
             <h1 class="profile-name">{{$user['name']}}</h1>
             <h4 class="profile-email">{{$user['email']}}</h4>
             <a href="{{route('edit_profile')}}" class="button-profile" style="vertical-align:middle"><span>@lang('auth.edit-profile')</span></a>

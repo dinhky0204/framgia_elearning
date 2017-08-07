@@ -39,5 +39,9 @@ return [
     'following' => 'Following',
     'follower' => 'Follower',
     'upload-avatar' => 'Upload new picture',
+    'update-profile' => 'Update profile',
+    'old-password' => 'Old password',
+    'new-password' => 'New Password',
+    'confirm-new-pass' => 'Confirm new Password',
 
 ];
