@@ -50,10 +50,9 @@ class ProfileController extends Controller
                 Image::make($avatar)->resize(300, 300)->save(public_path('avatar/' . $filename));
                 $user->avatar = $filename;
             }
-            $user->password = Hash::make($request->get('new-password'));
+            $user->password = bcrypt($request->get('new-password'));
             $user->name = $request->get('full-name');
             $user->save();
-
             return view('home', ['user' => $user]);
         } else {
             return redirect()->back();

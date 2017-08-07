@@ -37,6 +37,7 @@
                         <a class="change-pass" style="cursor: pointer;">@lang('Change password?')</a>
                     </li>
                 </ul>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
