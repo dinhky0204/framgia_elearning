@@ -27,3 +27,11 @@ Route::post('/passwordreset/sendmail', 'Auth\ResetPasswordController@sendmailToR
 Route::get('/profile', 'Auth\ProfileController@showProfile')->name('show_profile');
 Route::get('/profile/edit', 'Auth\ProfileController@editProfile')->name('edit_profile');
 Route::post('/profile/save', 'Auth\ProfileController@saveProfile')->name('profile-save');
+Route::get('/admin/homepage', 'HomePageController@homepage')->name('admin_homepage');
+Route::get('/admin/overview', 'OverViewController@overview')->name('admin_overview');
+Route::get('/admin/homepage', 'HomePageController@homepage')->name('admin_homepage');
+Route::get('/admin/overview', 'OverViewController@overview')->name('admin_overview');
+Route::get('/admin/courses','CourseController@getCourses')->name('admin_courses');
+Route::delete('/admin/courses/{id}','CourseController@deleteCourse')->name('admin_delete_course');
+Route::get('/admin/users', 'UserController@getUsers')->name('admin_users');
+Route::delete('/admin/users/{id}','UserController@deleteUser');

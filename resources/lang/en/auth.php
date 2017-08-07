@@ -43,5 +43,4 @@ return [
     'old-pass' => 'Old password',
     'new-pass' => 'New Password',
     'confirm-new-pass' => 'Confirm new Password',
-
 ];

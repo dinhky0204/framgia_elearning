@@ -12,3 +12,5 @@ npm-debug.log
 /public/assets
 .framgia-ci.yml
 .framgia-ci-result.temp.yml
+/public/js
+/public/fonts
