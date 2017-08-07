@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -42,7 +45,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -57,7 +60,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -66,6 +69,41 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'active' => false,
+            'point' => 0,
+            'avatar' => 'default',
         ]);
+    }
+
+    protected function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->with('register_error', $validator->messages());
+        } else {
+            User::where('email', $request->input('email'))->where('active', 0)->delete();
+            $data = $this->create($request->all())->toArray();
+            $minutes = 1;
+            $random_token = str_random(30);
+            $data['token'] = $random_token;
+            Cache::add($random_token, $data['email'], $minutes);
+            Mail::send('mails.confirmation', $data, function ($message) use ($data) {
+                $message->to($data['email']);
+                $message->subject('Registration Confirmation');
+            });
+            return redirect(route('login'));
+        }
+    }
+
+    public function confirmation($token)
+    {
+        $value = Cache::get($token);
+        if (!is_null($value)) {
+            $user = User::where('email', $value)->first();
+            $user->active = 1;
+            $user->save();
+            return redirect(route('home'));
+        }
+        return redirect(route('login'));
     }
 }

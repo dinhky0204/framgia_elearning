@@ -24,5 +24,4 @@ class Answer extends BaseModel
     {
         return $this->hasOne(Question::class);
     }
-
 }

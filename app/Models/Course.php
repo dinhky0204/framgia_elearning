@@ -32,4 +32,9 @@ class Course extends BaseModel
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function subject()
+    {
+        return $this->belongsTo('App\Models\Subject');
+    }
 }
