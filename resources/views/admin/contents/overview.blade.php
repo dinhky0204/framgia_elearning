@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('general')
+@section('overview')
 
     <!-- Main contents -->
         <section id="main-content">
@@ -20,7 +20,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="info-box blue-bg">
                             <i class="fa fa-book"></i>
-                            <div class="count">4</div>
+                            <div class="count">{{ \App\Models\Course::get()->count() }}</div>
                             <div class="title">{{ trans('admin_overview.courses') }}</div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="info-box brown-bg">
                             <i class="fa fa-user"></i>
-                            <div class="count">13</div>
+                            <div class="count">{{ \App\Models\User::get()->count() }}</div>
                             <div class="title">{{ trans('admin_overview.users') }}</div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="info-box green-bg">
                             <i class="fa fa-bank"></i>
-                            <div class="count">1</div>
+                            <div class="count">{{ \App\Models\Admin::get()->count() }}</div>
                             <div class="title">{{ trans('admin_overview.administrators') }}</div>
                         </div>
                     </div>

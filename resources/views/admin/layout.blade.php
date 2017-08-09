@@ -28,9 +28,10 @@
     @include('admin.header.header')
     @include('admin.sidebar.sidebar')
     @yield('homepage')
-    @yield('general')
+    @yield('overview')
     @yield('users')
     @yield('courses')
+    @yield('subjects')
 
 </section>
 

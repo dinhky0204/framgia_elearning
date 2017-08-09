@@ -1,50 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <aside class="profile-card">
-        <header>
-            <!-- here’s the avatar -->
-            <a target="_blank" href="#">
-                <img src="http://lorempixel.com/150/150/people/" class="hoverZoomLink">
-            </a>
-
-            <!-- the username -->
-            <h3>
-                {{$user['name']}}
-            </h3>
-
-            <!-- and role or location -->
-            <h4>
-                {{$user['email']}}
-            </h4>
-
-        </header>
-
-        <!-- bit of a bio; who are you? -->
-        <div class="profile-bio">
-
-        <span>
-            Point: {{$user['point']}}
-        </span>
-            <hr>
-        <span>
-            Following: {{$following}}
-        </span>
-            <hr>
-        <span>
-            Follower: {{$follower}}
-        </span>
-            <hr>
-        <span>
-            Course: {{$course}}
-        </span>
-            <hr>
-
+    <div class="profile-container">
+        <div class="profile-basic">
+            <img src="/avatar/{{$user['avatar']}}" alt="Avatar" class="img-circle">
+            <h1 class="profile-name">{{$user['name']}}</h1>
+            <h4 class="profile-email">{{$user['email']}}</h4>
+            <a href="{{route('edit_profile')}}" class="button-profile" style="vertical-align:middle"><span>@lang('auth.edit-profile')</span></a>
         </div>
-
-        <!-- some social links to show off -->
-        <a href="{{route('edit_profile')}}" class="button-profile"
-           style="vertical-align:middle"><span>Edit Profile </span></a>
-    </aside>
+        <div class="profile-advance">
+            <div class="box-advance">
+                <h2>@lang('auth.achievement')</h2>
+                <div class="info">
+                    <span class="glyphicon glyphicon-fire"></span>
+                    <h3>{{$user['point']}} @lang('auth.point')</h3>
+                </div>
+                <div class="info">
+                    <span class="glyphicon glyphicon-leaf"></span>
+                    <h3>{{$course}} @lang('auth.course')</h3>
+                </div>
+            </div>
+            <div class="box-advance friend">
+                <h2>@lang('auth.friend')</h2>
+                <h3 class="follow">@lang('auth.following'): {{$following}}</h3>
+                <h3 class="follow">@lang('auth.follower'): {{$follower}}</h3>
+            </div>
+        </div>
+    </div>
 @endsection

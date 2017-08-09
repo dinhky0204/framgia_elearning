@@ -1,35 +1,21 @@
-/*
- *  Document   : main.css
- *  Author     : pixelcave
- *  Description: The main stylesheet of the template
- *
- *  Structure (with shortcodes):
- *      (#m01mls) MAIN LAYOUT
- *      (#m02hds) HEADER
- *      (#m03mcs) MAIN CONTENT
- *      (#m04bos) BOOTSTRAP OVERWRITE/EXTEND STYLES
- *      (#m05ths) THEME
- *      (#m06hes) HELPERS
- *      (#m07res) RESPONSIVE
- *      (#m08rts) RETINA
- */
-/*
-=================================================================
-(#m01mls) MAIN LAYOUT
-=================================================================
-*/
-/* Include Open Sans font from Google Web Fonts */
 @import url('//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,600italic,700,700italic');
 
 body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #353535;
-    background-color: #0d3625;
+    background-color: #e9e9e9;
+    overflow: auto;
 }
 
 #page-container {
     margin: 0 auto;
     width: 100%;
+}
+.page-container {
+    background-color: #e9e9e9!important;
+    min-width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
 }
 
 #page-container.boxed {
@@ -50,7 +36,7 @@ header {
     padding: 25px 0;
     color: #ffffff;
     background: url('../img/template/ie8_opacity_dark_20.png');
-    background: rgba(0, 0, 0, 0.2);
+    background: #29a7e5;
     z-index: 1000;
     -webkit-transition: all ease-out 0.25s;
     transition: all ease-out 0.25s;
@@ -59,11 +45,11 @@ header {
 header.header-scroll {
     padding: 10px 0;
     background: url('../img/template/ie8_opacity_dark_60.png');
-    background: rgba(0, 0, 0, 0.6);
+    background: #29a7e5;
 }
 
 header.header-scroll:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: #29a7e5;
 }
 
 .login-section {
