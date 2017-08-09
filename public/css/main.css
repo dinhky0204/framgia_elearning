@@ -1989,8 +1989,22 @@ p, .table, .alert, .carousel {
     font-weight: 700;
     cursor: pointer;
     border-radius: 20px;
+    text-decoration: none!important;
 }
-
+.result {
+    font-size: 50px;
+    display: none;
+    position: absolute;
+    color: #00AA00;
+    margin-top: 10%;
+}
+.incorrect-result {
+    font-size: 50px;
+    display: none;
+    position: absolute;
+    color: red;
+    margin-top: 10%;
+}
 
 /*
 =================================================================

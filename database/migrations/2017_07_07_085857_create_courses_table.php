@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
         $table->boolean('hidden');
         $table->integer('total_question');
         $table->integer('subject_id')->unsigned();
-        $table->foreign('subject_id')->references('id')->on('subjects');
+        $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         $table->integer('admin_id')->unsigned();
         $table->foreign('admin_id')->references('id')->on('admins');
         $table->timestamps();

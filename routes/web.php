@@ -27,17 +27,20 @@ Route::post('/passwordreset/sendmail', 'Auth\ResetPasswordController@sendmailToR
 Route::get('/profile', 'Auth\ProfileController@showProfile')->name('show_profile');
 Route::get('/profile/edit', 'Auth\ProfileController@editProfile')->name('edit_profile');
 Route::post('/profile/save', 'Auth\ProfileController@saveProfile')->name('profile-save');
+
 Route::get('/admin/homepage', 'HomePageController@homepage')->name('admin_homepage');
 Route::get('/admin/overview', 'OverViewController@overview')->name('admin_overview');
 Route::get('/admin/homepage', 'HomePageController@homepage')->name('admin_homepage');
 Route::get('/admin/overview', 'OverViewController@overview')->name('admin_overview');
+
+Route::get('/admin/subjects','SubjectController@getSubjects')->name('admin_subjects');
+Route::delete('/admin/subjects/{id}','SubjectController@deleteSubject')->name('admin_delete_subject');
+
 Route::get('/admin/courses','CourseController@getCourses')->name('admin_courses');
 Route::delete('/admin/courses/{id}','CourseController@deleteCourse')->name('admin_delete_course');
 Route::get('/admin/users', 'UserController@getUsers')->name('admin_users');
 Route::delete('/admin/users/{id}','UserController@deleteUser');
 Route::get('/course/{course_id}', 'Auth\CourseController@showCourse')->name('course_user');
-Route::post('/test', function () {
-    if(Request::ajax()) {
-        return Response::json(Request::all());
-    }
-})->name('test');
+Route::post('/course/{course_id}', 'Auth\CourseController@showCourse');
+Route::get('/admin/users', 'UserController@getUsers')->name('admin_users');
+Route::delete('/admin/users/{id}','UserController@deleteUser');

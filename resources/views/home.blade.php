@@ -24,7 +24,7 @@
             <div class="col-md-4 goal-container">
                 <div class="col-md-10 col-md-offset-1 goal-content">
                     <h2>
-                        Mục tiêu mỗi ngày
+                        Quá trình học
                     </h2>
                     <div class="bird row">
                         <div class="col-md-4">
