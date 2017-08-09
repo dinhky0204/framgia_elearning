@@ -1876,6 +1876,121 @@ p, .table, .alert, .carousel {
 :focus {
     outline: 0 !important;
 }
+.main-container {
+    margin-top: 10%;
+}
+.goal-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0,0,0,.04);
+    margin-left: 5%;
+}
+.bird img {
+    height: 100px;
+}
+.goal-content {
+    margin-top: 5%;
+}
+.goal-content h2 {
+    color: #3c3c3c;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+    margin: 0 0 25px;
+}
+.progress {
+    width: 100%;
+    height: 50px;
+}
+.progress-wrap {
+    background: #f80;
+    margin: 20px 0;
+    overflow: hidden;
+    position: relative;
+}
+.progress-bar {
+    background: #ddd;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+.course-user {
+    background-color: #fff;
+    box-shadow: 0 0 25px rgba(0,0,0,.04);
+    border-radius: 10px;
+    height: auto;
+}
+.course-start {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 10px;
+    box-shadow: 0 1px 15px rgba(0,0,0,.2);
+    text-align: center;
+}
+.course-start span {
+    color: #999;
+    line-height: 22px;
+    font-size: 17px;
+    text-align: center;
+}
+.quick-start img {
+    height: 100px;
+    cursor: pointer;
+}
+.quick-start-title {
+    color: #7eb530;
+    font-weight: 700;
+    text-align: center;
+}
+.exam-container {
+    margin-top: 10%;
+    height: auto;
+}
+.exam-content {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0,0,0,.04);
+}
+.question-content {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+}
+.answer-tag {
+    text-align: center;
+}
+.answer-content {
+    width: 100%;
+    margin-left: 15%;
+}
+.box-answer {
+    margin-top: 5%;
+    margin-left: 1%;
+    border-radius: 10px;
+    color: #999;
+    display: inline-block;
+    font-size: 15px;
+    text-align: left;
+    border: 2px solid #dadada;
+    background-color: #fff;
+}
+.box-answer:hover {
+    border-color: #1caff6;
+    cursor: pointer;
+}
+.box-answer img {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    text-align: center;
+}
+.next-question {
+    margin-top: 2%;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
 
 /*
 =================================================================

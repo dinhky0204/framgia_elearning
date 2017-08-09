@@ -18,6 +18,7 @@ class Answer extends BaseModel
         'tag',
         'answer_content',
         'correct',
+        'question_id',
     ];
 
     public function Question()

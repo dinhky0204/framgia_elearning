@@ -35,4 +35,9 @@ Route::get('/admin/courses','CourseController@getCourses')->name('admin_courses'
 Route::delete('/admin/courses/{id}','CourseController@deleteCourse')->name('admin_delete_course');
 Route::get('/admin/users', 'UserController@getUsers')->name('admin_users');
 Route::delete('/admin/users/{id}','UserController@deleteUser');
-
+Route::get('/course/{course_id}', 'Auth\CourseController@showCourse')->name('course_user');
+Route::post('/test', function () {
+    if(Request::ajax()) {
+        return Response::json(Request::all());
+    }
+})->name('test');
