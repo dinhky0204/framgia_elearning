@@ -31,6 +31,11 @@ $(document).ready(function () {
     clickQuestion();
     moveProgressBar();
     chooseAnswer();
+    followCourse();
+    unfollowCourse();
+    course_progress();
+    var pro = 100 - 1/window.list_question.length*100;
+    $("#progress-test").css('width', pro + "%");
     $(window).resize(function() {
         moveProgressBar();
     });
@@ -47,32 +52,24 @@ $(document).ready(function () {
     }
 
     function clickQuestion() {
-        $(".next-question").click(function () {
+        $(".next-question").on('click', function () {
             count++;
             onClick();
+            var progress = 0;
             $(".result").hide();
             $(".incorrect-result").hide();
+            progress = 100 - (count+1)/window.list_question.length*100;
+            $("#progress-test").css('width', progress + "%");
+            // $("#progress-test").attr('data-progress-percent', progress);
             if(count <= (window.list_question.length - 1)) {
-                $("#img-1").attr('src',"/img/answer_image/" + window.list_question[count].answers[0].desc);
-                $("#img-2").attr('src',"/img/answer_image/" + window.list_question[count].answers[1].desc);
-                $("#img-3").attr('src',"/img/answer_image/" + window.list_question[count].answers[2].desc);
-                $("#img-4").attr('src',"/img/answer_image/" + window.list_question[count].answers[3].desc);
+                $(".question-content").html(window.list_question[count].question_content);
+                var i = 1;
+                for (i = 1; i <= window.list_question[count].answers.length; i++) {
+                    $("#img-" + i).attr('src',"/img/answer_image/" + window.list_question[count].answers[i-1].desc);
+                    $("#answer-" + i).fadeOut();
+                    $("#answer-" + i).text(window.list_question[count].answers[i-1].tag + ".  " + window.list_question[count].answers[i-1].answer_content).fadeIn();
+                }
 
-                $("#answer-1").fadeOut(function () {
-                    $("#answer-1").text(window.list_question[count].answers[0].tag + ".  " + window.list_question[count].answers[0].answer_content).fadeIn();
-                });
-                $("#answer-2").fadeOut(function () {
-                    $("#answer-2").text(window.list_question[count].answers[1].tag + ".  " + window.list_question[count].answers[1].answer_content).fadeIn();
-                });
-                $("#answer-3").fadeOut(function () {
-                    $("#answer-3").text(window.list_question[count].answers[2].tag + ".  " + window.list_question[count].answers[2].answer_content).fadeIn();
-                });
-                $("#answer-4").fadeOut(function () {
-                    $("#answer-4").text(window.list_question[count].answers[3].tag + ".  " + window.list_question[count].answers[3].answer_content).fadeIn();
-                });
-                $(".question-content").fadeOut(function () {
-                    $(".question-content").text(window.list_question[count].question_content).fadeIn();
-                });
             }
             if(count == (window.list_question.length - 1)) {
                 $(".next-question").fadeOut(function () {
@@ -80,8 +77,10 @@ $(document).ready(function () {
                 });
             }
             if(count >= window.list_question.length ) {
+                progress = 100 - count/window.list_question.length*100;
+                $("#progress-test").css('width', progress + "%");
                 $.ajax({
-                    url: window.course_id,
+                    url: "",
                     method: 'POST',
                     data: {
                         'correct_questions': correct_questions
@@ -93,10 +92,65 @@ $(document).ready(function () {
                         console.log("Error");
                     }
                 });
-                alert("Diem cua ban: " + point);
+                alert("Điểm của bạn: " + point + '/' + count);
+                window.location.href = '/home';
             }
         });
     }
+    function course_progress(){
+        var $ppc = $('.progress-pie-chart'),
+            percent = parseInt($ppc.data('percent')),
+            deg = 360*percent/100;
+        if (percent > 50) {
+            $ppc.addClass('gt-50');
+        }
+        $('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
+        $('.ppc-percents span').html(percent+'%');
+    }
+    function followCourse() {
+        $('.follow-course-btn').click(function () {
+            var course_id = $(this).attr('value');
+            console.log(course_id);
+            $.ajax({
+                url: "/list_course/{course_id}/follow",
+                method: 'POST',
+                data: {
+                    'course_id': course_id
+                },
+                success: function(data) {
+                    console.log(data);
+                    window.location.reload();
+                },
+                error: function(data) {
+                    console.log("Error");
+                    window.location.reload();
+                }
+            });
+        });
+    }
+    function unfollowCourse() {
+        $('.unfollow-course-btn').click(function () {
+            console.log('ok');
+            var course_id = $(this).attr('value');
+            console.log(course_id);
+            $.ajax({
+                url: "/list_course/unfollow",
+                method: 'POST',
+                data: {
+                    'course_id': course_id
+                },
+                success: function(data) {
+                    console.log(data);
+                    window.location.reload();
+                },
+                error: function(data) {
+                    console.log("Error");
+                    window.location.reload();
+                }
+            });
+        });
+    }
+
     function offClick() {
         $('#img-1').off('click');
         $('#img-2').off('click');

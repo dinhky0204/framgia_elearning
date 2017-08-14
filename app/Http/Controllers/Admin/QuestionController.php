@@ -111,9 +111,12 @@ class QuestionController extends Controller
 
         return redirect()->back();
     }
-    public function deleteQuestion($question_id) {
+    public function deleteQuestion(Request $request, $question_id) {
         Answer::where('question_id', $question_id)->delete();
         Question::where('id', $question_id)->delete();
+        $course = Course::where('id', $request->get('course-id'))->first();
+        $course->total_question = $course->total_question -1;
+        $course->save();
         return redirect()->back();
     }
     public function createQuestion(Request $request) {
@@ -125,6 +128,9 @@ class QuestionController extends Controller
             'course_id' => intval($request->get('question-course')),
             'question_type_id' => intval($request->get('question-type'))
         ]);
+        $course = Course::where('id', intval($request->get('question-course')))->first();
+        $course->total_question = $course->total_question + 1;
+        $course->save();
         if($tmp)
             return redirect()->back();
         else

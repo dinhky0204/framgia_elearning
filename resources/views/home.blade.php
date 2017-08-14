@@ -16,7 +16,13 @@
                         <img src="/img/icon/house-icon.png">
                     </a>
                     <a href="{{route('course_user', 1)}}" class="quick-start-title">
-                        Bài thi rút ngắn
+                        Bài thi cơ bản
+                    </a>
+                    <a class="quick-start" href="{{route('course_user', 1)}}">
+                        <img src="/img/icon/follow.png">
+                    </a>
+                    <a href="{{route('list_follow_course')}}" class="quick-start-title">
+                        Khóa học đã follow
                     </a>
                 </div>
 
@@ -34,7 +40,9 @@
                             <span>Học một ngôn ngữ đòi hỏi một quá trình luyện tập hàng ngày.</span>
                         </div>
                     </div>
-                    <div class="progress-wrap progress" data-progress-percent="25">
+                    <label for="" style ="color: #000000;">Tiến độ hiện tại</label>
+                    <br>
+                    <div class="progress-wrap progress" data-progress-percent="{{$progress}}">
                         <div class="progress-bar progress"></div>
                     </div>
                 </div>

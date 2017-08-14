@@ -36,40 +36,19 @@
                             <i class="fa fa-times"></i>
                         </a>
                     </li>
-                    <li class="active">
-                        <a href="{{route('home')}}" class="site-nav-sub">
-                            <i class="fa fa-angle-down site-nav-arrow"></i>
+                    <li class="active nav-bar-item">
+                        <a href="{{route('home')}}">
                             Home
                         </a>
-                        <ul>
-                            <li>
-                                <a href="#">Boxed Parallax</a>
-                            </li>
-                            <li>
-                                <a href="#">Boxed Video</a>
-                            </li>
-                        </ul>
                     </li>
-                    <li>
+                    <li class="nav-bar-item">
                         <a href="{{route('list_course', 1)}}">COURSE</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="site-nav-sub"><i
-                                    class="fa fa-angle-down site-nav-arrow"></i>FORUM</a>
-                        <ul>
-                            <li>
-                                <a href="#">Home</a>
-                            </li>
-                            <li>
-                                <a href="#">Search Results</a>
-                            </li>
-                            <li>
-                                <a href="#">Product List</a>
-                            </li>
-                        </ul>
+                        <a href="javascript:void(0)">FORUM</a>
                     </li>
-                    <li>
-                        <a href="about.html">About</a>
+                    <li class="nav-bar-item">
+                        <a href="#">About</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)" class="site-nav-sub"><i
@@ -85,10 +64,7 @@
                     </li>
                     @if (Auth::guest())
                         <li>
-                            <a href="{{route('login')}}" class="btn btn-primary">Log In</a>
-                        </li>
-                        <li>
-                            <a href="{{route('register')}}" class="btn btn-success">Sign Up</a>
+                            <a href="{{route('login')}}" class="btn btn-primary">Log In/Sign up</a>
                         </li>
                     @else
 

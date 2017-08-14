@@ -13,6 +13,6 @@ class HomePageController extends Controller
     }
 
     public function homepage(){
-        return view('admin.contents.homepage');
+        return view('admin.contents.overview');
     }
 }

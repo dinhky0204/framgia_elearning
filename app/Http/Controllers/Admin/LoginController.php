@@ -32,7 +32,8 @@ class LoginController extends Controller
         $password = $input['password'];
         if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1, 'is_admin' => 1])) {
             return redirect('admin/homepage');
-        } else
+        }
+        else
             return redirect()->back()->with('login_status', 'Email or Password missing.');
     }
     public function adminLogout(Request $request)

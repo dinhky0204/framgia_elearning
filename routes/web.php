@@ -44,8 +44,12 @@ Route::post('/admin/courses', 'Admin\CourseController@createCourse')->name('admi
 Route::get('/admin/users', 'Admin\UserController@getUsers')->name('admin_users');
 Route::delete('/admin/users/{id}','Admin\UserController@deleteUser');
 Route::get('/course/{course_id}', 'Auth\CourseController@showCourse')->name('course_user');
-Route::post('/course/{course_id}', 'Auth\CourseController@showCourse');
-Route::get('list_course/{course_id}', 'Auth\CourseController@listCourse')->name('list_course');
+Route::get('/follow_course', 'Auth\CourseController@listfollowCourses')->name('list_follow_course');
+Route::post('/course/{course_id}/test', 'Auth\CourseController@testCourse');
+Route::get('/course/{course_id}/test', 'Auth\CourseController@testCourse')->name('test_course');
+Route::get('list_course/{subject_id}', 'Auth\CourseController@listCourse')->name('list_course');
+Route::post('list_course/{subject_id}/follow', 'Auth\CourseController@followCourse')->name('follow_course');
+Route::post('list_course/{subject_id}', 'Auth\CourseController@unfollowCourse')->name('unfollow_course');
 
 Route::get('/admin/questions', 'Admin\QuestionController@index')->name('admin_questions');
 Route::get('/admin/questions/{question_id}', 'Admin\QuestionController@editQuestion')->name('admin_edit_question');

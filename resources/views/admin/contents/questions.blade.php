@@ -6,7 +6,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            <h3 class="fa fa-book">{{ trans('admin_subjects.subject-list') }}</h3>
+                            <h3 class="fa fa-book">Question list</h3>
                         </header>
                         @include('admin.contents.create_question')
                         <br>
@@ -33,6 +33,7 @@
                                         {!! Form::open(['action' => ['Admin\QuestionController@deleteQuestion', $question->id],
                                             'method' => 'post']) !!}
                                         {!! Form::hidden('_method', 'DELETE') !!}
+                                        {!! Form::hidden('course-id', $question->course->id) !!}
                                         {!! Form::submit(trans('admin_questions.delete'), ['class' => "btn btn-danger"]) !!}
                                         {!! Form::close() !!}
                                     </td>

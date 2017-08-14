@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\StudentCourseEnrollment;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -71,7 +72,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'active' => false,
             'point' => 0,
-            'avatar' => 'default',
+            'avatar' => 'default.jpg',
             'is_admin' => false,
         ]);
     }
@@ -84,6 +85,11 @@ class RegisterController extends Controller
         } else {
             User::where('email', $request->input('email'))->where('active', 0)->delete();
             $data = $this->create($request->all())->toArray();
+            StudentCourseEnrollment::create([
+                'progress' => 0,
+                'course_id' => 1,
+                'user_id' => $data['id']
+            ]);
             $minutes = 1;
             $random_token = str_random(30);
             $data['token'] = $random_token;

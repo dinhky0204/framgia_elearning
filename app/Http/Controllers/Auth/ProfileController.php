@@ -49,7 +49,7 @@ class ProfileController extends Controller
                 if($request->get('new-password') == $request->get('confirm-new-password')) {
                     $user->password = Hash::make($request->get('new-password'));
                     $user->save();
-                    return view('home');
+                    return view('welcome');
                 }
                 else {
                     return redirect()->back()->withInput();
@@ -60,7 +60,7 @@ class ProfileController extends Controller
             }
             $user->name = $request->get('full-name');
             $user->save();
-            return view('home');
+            return view('welcome');
         } else {
             return redirect()->back()->withInput();
         }

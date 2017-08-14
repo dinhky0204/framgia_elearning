@@ -6,6 +6,7 @@
     position: relative;
     margin: 120px auto 0!important;
     margin-left: 100px !important;
+    height: auto;
 }
 .profile-basic {
     text-align: center;
@@ -110,7 +111,6 @@
 .edit-profile-container {
     text-align: center;
     width: 440px;
-    height: 265px;
     background-color: #fff;
     z-index: 2;
     border-radius: 10px;

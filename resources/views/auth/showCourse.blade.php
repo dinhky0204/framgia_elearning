@@ -1,0 +1,36 @@
+@extends('layouts.app')
+@section('content')
+    <div class="exam-container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 exam-content">
+                <div class="col-md-8">
+                    <div class="course-title">
+                        {{$course['name']}}
+                    </div>
+                    <div class="course-desc">
+                        {{$course['desc']}}
+                    </div>
+                    <div class="total-question">
+                        Tổng số câu hỏi: {{$course['total_question']}}
+                    </div>
+                </div>
+                <div class="dol-md-4 progress-pie-chart" data-percent="{{$progress}}">
+                    <div class="ppc-progress">
+                        <div class="ppc-progress-fill"></div>
+                    </div>
+                    <div class="ppc-percents">
+                        <div class="pcc-percents-wrapper">
+                            <span>%</span>
+                        </div>
+                    </div>
+                </div>
+                @if($active == 1)
+                    <a href="{{route('test_course', $course->id)}}" class="col-md-2 col-md-offset-3 btn btn-primary">Làm bài kiểm tra</a>
+                @else
+                    <a href="#" class="col-md-4 col-md-offset-3 btn btn-danger">Bạn chưa đăng ký khóa học này</a>
+                @endif
+                <h3 class="col-md-4 col-md-offset-8">Số câu đúng:{{$correct}}</h3>
+            </div>
+        </div>
+    </div>
+@endsection

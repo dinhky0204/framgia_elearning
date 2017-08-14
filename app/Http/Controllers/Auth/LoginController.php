@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -47,7 +47,7 @@ class LoginController extends Controller
         $email = $input['email'];
         $password = $input['password'];
         if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1, 'is_admin' => 0])) {
-            return view('home')->with('login_status', 'You are logined.');
+            return view('welcome')->with('login_status', 'You are logined.');
         } else
             return redirect()->back()->with('login_status', 'Email or Password missing.');
     }

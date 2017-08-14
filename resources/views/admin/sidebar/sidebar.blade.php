@@ -10,12 +10,12 @@
                 </a>
             </li>
 
-            <li>
-                <a class="" href="{{route('admin_overview')}}">
-                    <i class="icon_document_alt"></i>
-                    <span>{{ trans('admin_sidebar.overview') }}</span>
-                </a>
-            </li>
+            {{--<li>--}}
+                {{--<a class="" href="{{route('admin_overview')}}">--}}
+                    {{--<i class="icon_document_alt"></i>--}}
+                    {{--<span>{{ trans('admin_sidebar.overview') }}</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
             <li>
                 <a class="" href="{{route('admin_subjects')}}">
