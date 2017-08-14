@@ -1,6 +1,20 @@
 /**
  * Created by dinhky on 08/08/2017.
  */
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            console.log(input.value);
+            $('#avatar-profile')
+                .attr('src', e.target.result)
+                .width(150)
+                .height(150);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 $(document).ready(function () {
     $.ajaxSetup({

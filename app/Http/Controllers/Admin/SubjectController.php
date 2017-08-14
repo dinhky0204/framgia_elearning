@@ -12,36 +12,39 @@ class SubjectController extends Controller
     {
         $this->middleware('admin');
     }
-    public function getSubjects() {
+
+    public function getSubjects()
+    {
         $data = Subject::where('hidden', 0)->get();
         return view('admin.contents.subjects', ['data' => $data]);
     }
 
-    public function editSubject(Request $request) {
-        if($request->ajax()) {
+    public function editSubject(Request $request)
+    {
+        if ($request->ajax()) {
             $subject = Subject::where('id', intval($request->id))->first();
             $subject->name = $request->name;
             $subject->description = $request->description;
             $subject->save();
             return response(['msg' => 'Response ok']);
-        }
-        else {
+        } else {
             return view('admin.contents.overview');
         }
     }
 
-    public function deleteSubject($subject_id) {
+    public function deleteSubject($subject_id)
+    {
         $deletedSubject = Subject::where('id', '=', $subject_id)
-                            ->update(['hidden' => 1]);
+            ->update(['hidden' => 1]);
         return redirect()->route('admin_subjects');
     }
 
-    public function createSubject(Request $request) {
-        if($request->ajax()) {
+    public function createSubject(Request $request)
+    {
+        if ($request->ajax()) {
             Subject::create(['name' => $request->name, 'description' => $request->description, 'hidden' => 0]);
             return response(['msg' => 'Response ok']);
-        }
-        else {
+        } else {
             return view('admin.contents.overview');
         }
     }

@@ -5,13 +5,12 @@
             @lang('auth.update-profile')
         </h2>
         <div class="change-avatar">
-            <img src="/avatar/{{$user['avatar']}}" alt="Choose file" class="img-circle avatar">
+            <img src="/avatar/{{$user['avatar']}}" alt="Choose file" class="img-circle avatar" id="avatar-profile">
             {!! Form::open(['route' => 'profile-save', 'method' => 'post', 'files' => true]) !!}
             {{ csrf_field() }}
             <ul class="change-profile">
-                <li class="">
-                    <input type="file" name="avatar" class="inputfile inputfile-1 col-md-4 col-md-offset-4" data-multiple-caption="{count} files selected" multiple />
-                    <label for="file-1"> <span>Choose a file&hellip;</span></label>
+                <li class="row col-md-offset-4">
+                    <input onchange="readURL(this);" class="btn btn-primary col-md-7" type="file" name="avatar" class="inputfile inputfile-1 col-md-4 col-md-offset-4" data-multiple-caption="{count} files selected" multiple />
                 </li>
                 <li class="row">
                     <label class="col-md-4">@lang('auth.email')</label>
@@ -38,7 +37,7 @@
                 </li>
 
             </ul>
-            <input type="submit" class="btn btn-primary">
+            <input type="submit" class="btn btn-primary button-profile" value = "Edit">
             {!!Form::close()!!}
         </div>
     </div>
