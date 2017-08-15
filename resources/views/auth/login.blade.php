@@ -29,7 +29,7 @@
                 </label>
                 {!!Form::password('password', ['required autocomplete' => 'off'])!!}
             </div>
-            <p class="forgot"><a href="{{ route('password.request') }}">Forgot Password?</a></p>
+            <p class="forgot"><a href="{{ route('resetpassword') }}">Forgot Password?</a></p>
 
             <button class="button button-block"/>Log In</button>
 

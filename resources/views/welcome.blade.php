@@ -1,47 +1,32 @@
 @extends('layouts.app')
 
-@section('content')
-    <section id="slider">
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <div class="slider_area">
-                    <!-- Start super slider -->
-                    <div id="slides">
-                        <ul class="slides-container">
-                            <li>
-                                <img src="img/slider/2.jpg" alt="img">
-                                <div class="slider_caption">
-                                    <h2>Largest & Beautiful University</h2>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                                    <a class="slider_btn" href="#">Know More</a>
-                                </div>
-                            </li>
-                            <!-- Start single slider-->
-                            <li>
-                                <img src="img/slider/3.jpg" alt="img">
-                                <div class="slider_caption slider_right_caption">
-                                    <h2>Better Education Environment</h2>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
-                                    <a class="slider_btn" href="#">Know More</a>
-                                </div>
-                            </li>
-                            <!-- Start single slider-->
-                            <li>
-                                <img src="img/slider/4.jpg" alt="img">
-                                <div class="slider_caption">
-                                    <h2>Find out you in better way</h2>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search</p>
-                                    <a class="slider_btn" href="#">Know More</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <nav class="slides-navigation">
-                            <a href="#" class="next"></a>
-                            <a href="#" class="prev"></a>
-                        </nav>
-                    </div>
-                </div>
+@section('slider')
+    <div class="background-header" style="position: relative">
+        <div >
+            <div class="color-pencil" >
+                <img class="w3-image" src="/img/slider/4.jpg" alt="Me" width="1350" height="620" style="background: rgba(51,51,51,0.8);">
             </div>
         </div>
-    </section
+       <a href="{{route('login')}}">
+           <div class="text-box">
+               <div class="hover">
+                   <h3><span>Getting started with</span> <span style="color: #00DD00">E-Learning</span></h3>
+               </div>
+           </div>
+       </a>
+        <div class="text-box col-md-3 col-md-offset-2">
+            <h4><i class="fa fa-graduation-cap" style="color: #00DD00"><span style="color: #000000">Hơn 1000 học viên tham gia</span></i>
+
+            </h4>
+        </div>
+        <div class="text-box col-md-3 col-md-offset-1">
+            <h4><i class="fa fa-book" style="color: #00DD00"><span style="color: #000000">Hơn 300 Bài học</span></i>
+            </h4>
+        </div>
+        <div class="text-box col-md-3 col-md-offset-1">
+            <h4><i class="fa fa-paper-plane" style="color: #00DD00"><span style="color: #000000">Học trực tuyến</span></i>
+
+            </h4>
+        </div>
+    </div>
 @endsection

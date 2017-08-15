@@ -36,7 +36,7 @@
                             <i class="fa fa-times"></i>
                         </a>
                     </li>
-                    <li class="active nav-bar-item">
+                    <li class="nav-bar-item">
                         <a href="{{route('home')}}">
                             Home
                         </a>
@@ -105,8 +105,55 @@
         </div>
     </header>
     @yield('content')
+    @yield('slider')
 </div>
+<footer class="footer-distributed">
 
+    <div class="footer-left">
+
+        <h3>E<span>Learning</span></h3>
+        <img src="/img/slider/elearning-logo.png" alt="" width="200" height="40">
+        <p class="footer-company-name">Framgia E-learning &copy; 2017</p>
+    </div>
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>Tran Khat Chan</span> Ha Noi, Viet Nam</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+84 01649566609</p>
+        </div>
+
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@company.com">elearning_support@company.com</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+
+        <p class="footer-company-about">
+            <span>Về E-Learning</span>
+            Elearning học với bạn, bạn sẽ thấy rất hài hước và hấp dẫn. Dành nhiều thời điểm từ các câu trả lời đúng, trả lời một cách nhanh chóng trước khi thời gian chạy ra ngoài hoặc cấp độ tiếp theo. bài học nhỏ gọn của chúng tôi rất hiệu quả cho tất cả mọi người
+        </p>
+
+        <div class="footer-icons">
+
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+
+        </div>
+
+    </div>
+
+</footer>
 
 <!-- Scripts -->
 <script src="{{ asset('assets/bower/jquery/dist/jquery.min.js') }}"></script>

@@ -1,6 +1,30 @@
 /**
  * Created by dinhky on 08/08/2017.
  */
+function box_text() {
+    var path = document.getElementById("path");
+    var length = path.getTotalLength();
+    var percentage = 0;
+    path.style.strokeDasharray = length + ' ' + length;
+
+    path.style.strokeDashoffset = length;
+
+    path.getBoundingClientRect();
+
+    var interval = setInterval(function() {
+        percentage += 0.01;
+        var drawLength = length * percentage;
+        path.style.strokeDashoffset = length - drawLength;
+
+        if (percentage >= 0.99) {
+            path.style.strokeDasharray = "none";
+            clearInterval(interval);
+        } else {
+            path.style.strokeDasharray = length + ' ' + length;
+        }
+
+    }, 20);
+}
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -34,8 +58,7 @@ $(document).ready(function () {
     followCourse();
     unfollowCourse();
     course_progress();
-    var pro = 100 - 1/window.list_question.length*100;
-    $("#progress-test").css('width', pro + "%");
+    box_text();
     $(window).resize(function() {
         moveProgressBar();
     });

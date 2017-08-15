@@ -22,8 +22,9 @@ Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation'
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/confirm/resetpass/{token}', 'Auth\ResetPasswordController@resetPasswordConfirm')->name('confirmresetpass');
-Route::get('/passwordreset', 'Auth\ResetPasswordController@reset')->name('resetpassword');
+Route::get('/passwordreset', 'Auth\ResetPasswordController@index')->name('resetpassword');
 Route::post('/passwordreset/sendmail', 'Auth\ResetPasswordController@sendmailToReset')->name('sendmailToReset');
+//Route::post('/password/reset', 'Auth\ResetPasswordController@resetPass')->name('password_request');
 Route::get('/profile', 'Auth\ProfileController@showProfile')->name('show_profile');
 Route::get('/profile/edit', 'Auth\ProfileController@editProfile')->name('edit_profile');
 Route::post('/profile/save', 'Auth\ProfileController@saveProfile')->name('profile-save');

@@ -8,6 +8,8 @@
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\FollowStudent;
+use App\Models\Question;
+use App\Models\StudentAnswerQuestionExact;
 use App\Models\StudentCourseEnrollment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,16 +19,25 @@ class ProfileController extends Controller
 {
     public function showProfile()
     {
+        $point = 0;
         $user = Auth::user();
         $following = FollowStudent::where('following', $user['id'])->count();
         $follower = FollowStudent::where('follower', $user['id'])->count();
         $course = StudentCourseEnrollment::where('user_id', $user['id'])->count();
+        $list_question = StudentAnswerQuestionExact::where('user_id', $user['id'])->get();
+        foreach ($list_question as $question) {
+            $tmp = Question::where('id', $question->question_id)->first();
+            if($tmp) {
+                $point = $point + $tmp->point;
+            }
+        }
         return view('auth.profile',
             [
                 'user' => $user,
                 'following' => $following,
                 'follower' => $follower,
-                'course' => $course
+                'course' => $course,
+                'point' => $point
             ]);
     }
     public function editProfile()

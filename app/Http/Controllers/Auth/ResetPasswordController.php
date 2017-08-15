@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class ResetPasswordController extends Controller
@@ -51,6 +53,9 @@ class ResetPasswordController extends Controller
             return redirect(route('login'))->with('reset_pass_error', 'Reset password fails');
         }
     }
+    public function index() {
+        return  view('auth.passwords.email');
+    }
 
     public function sendmailToReset(Request $request)
     {
@@ -65,5 +70,15 @@ class ResetPasswordController extends Controller
                 ->subject('Reset password confirmation');
         });
         return redirect()->back();
+    }
+    public function resetPass(Request $request) {
+        $user = User::where('email', $request->get('email'))->first();
+        if($user) {
+            $user['password'] = Hash::make($request->get('password'));
+            $user->save();
+            return view('welcome');
+        }
+        else
+            redirect()->back()->with('status', 'Reset password fails');
     }
 }

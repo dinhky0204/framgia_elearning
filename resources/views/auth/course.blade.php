@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 exam-content">
                 <div class="progress-wrap progress" data-progress-percent="" id = "">
-                    <div class="progress-bar progress" id="progress-test"></div>
+                    <div class="progress-bar progress" id="progress-test" style="width: {{100 - 100/count($list_question) . "%"}}"></div>
                 </div>
                 <div class="question-content">
                     <?= $list_question[0]->question_content ?>

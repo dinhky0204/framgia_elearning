@@ -13,7 +13,7 @@
                 <h2>@lang('auth.achievement')</h2>
                 <div class="info">
                     <span class="glyphicon glyphicon-fire"></span>
-                    <h3>{{$user['point']}} @lang('auth.point')</h3>
+                    <h3>{{$point}} @lang('auth.point')</h3>
                 </div>
                 <div class="info">
                     <span class="glyphicon glyphicon-leaf"></span>
