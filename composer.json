@@ -14,7 +14,8 @@
         "silex/silex": "^2.0.4",
         "monolog/monolog": "^1.22",
         "twig/twig": "1.31.*",
-        "symfony/twig-bridge": "v3.2.*"
+        "symfony/twig-bridge": "v3.2.*",
+        "ext-gd" : " *"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

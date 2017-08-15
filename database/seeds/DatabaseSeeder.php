@@ -24,12 +24,23 @@ class DatabaseSeeder extends Seeder
         DB::table('admins')->insert([
             'id' => 1,
             'full_name' => 'Admin',
-            'email' => 'adminabc@gmail.com',
+            'email' => 'adminabcdef@gmail.com',
             'password' => bcrypt('12345678'),
             'active' => true,
             'avatar' => 'default.jpg',
         ]);
         DB::table('users')->insert([
+            'id' => 1,
+            'name' => 'Test',
+            'email' => 'testabc123@gmail.com',
+            'password' => bcrypt('12345678'),
+            'point' => 0,
+            'active' => true,
+            'avatar' => 'default.jpg',
+            'is_admin' => false,
+        ]);
+        DB::table('users')->insert([
+            'id' => 2,
             'name' => 'Admin',
             'email' => 'adminabc',
             'password' => bcrypt('12345678'),

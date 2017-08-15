@@ -1,5 +1,11 @@
 <?php
 
+$url = parse_url(getenv("DATABASE_URL"));
+
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
 return [
 
     /*
@@ -55,16 +61,14 @@ return [
         ],
 
         'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => 'ec2-107-22-211-182.compute-1.amazonaws.com:5432',
-            'port' => env('DB_PORT', '5432'),
-            'database' => 'd2qt6t4j15rbqj',
-            'username' => 'guhblqdojlyapd',
-            'password' => '65ff2c53aafacd8d2084e35228360f217984f9f8d0cc5b4a795b0c8b2f003116',
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
+            'driver'   => 'pgsql',
+            'host'     => $host,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'schema'   => 'public',
         ],
 
         'sqlsrv' => [
@@ -89,7 +93,7 @@ return [
     | your application. Using this information, we can determine which of
     | the migrations on disk haven't actually been run in the database.
     |
-    */
+    */ 
 
     'migrations' => 'migrations',
 

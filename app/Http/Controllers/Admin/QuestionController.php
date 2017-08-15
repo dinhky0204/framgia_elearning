@@ -14,6 +14,7 @@ use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Question;
 use App\Models\QuestionType;
+use App\Models\StudentAnswerQuestionExact;
 use Illuminate\Http\Request;
 use Image;
 
@@ -113,6 +114,7 @@ class QuestionController extends Controller
     }
     public function deleteQuestion(Request $request, $question_id) {
         Answer::where('question_id', $question_id)->delete();
+        StudentAnswerQuestionExact::where('question_id', $question_id)->delete();
         Question::where('id', $question_id)->delete();
         $course = Course::where('id', $request->get('course-id'))->first();
         $course->total_question = $course->total_question -1;

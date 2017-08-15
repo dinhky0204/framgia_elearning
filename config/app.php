@@ -103,7 +103,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'base64:8W4e/nacZDX1PvpgUjXwV7yArm+bPjloYTU3ZL5ZvFg='),
+    'key' => env('APP_KEY', 'base64:ITRzAxsChPCcO2dLNwRjRBU8P7XDqvGK8/MqjffwpEw='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -162,7 +162,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -179,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
     ],
 
     /*
