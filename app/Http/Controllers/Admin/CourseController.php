@@ -4,11 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Course;
 use App\Models\Subject;
+use App\Repositories\Course\CourseRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CourseController extends Controller
 {
+    protected $courseRepository;
+    public function __construct(CourseRepository $courseRepository)
+    {
+        $this->courseRepository = $courseRepository;
+    }
+
     public function getCourses()
     {
         $data = Course::where('hidden', 0)->get();
@@ -20,9 +27,7 @@ class CourseController extends Controller
     public function editCourse(Request $request)
     {
         if($request->ajax()) {
-            Course::where('id', $request->id)
-                    ->where('subject_id', $request->old_subject_id)
-                    ->update(['name' => $request->name, 'desc' => $request->description, 'subject_id' => $request->new_subject_id]);
+            $this->courseRepository->updateCourse($request);
             return response(['msg' => $request->new_subject_id]);
         }
         else {
@@ -34,21 +39,13 @@ class CourseController extends Controller
     {
         Course::where('id', $course_id)
             ->update(['hidden' => 1]);
-
         return redirect()->route('admin_courses');
     }
 
     public function createCourse(Request $request)
     {
         if($request->ajax()) {
-            Course::create([
-                'name' => $request->name,
-                'total_question' => 0,
-                'subject_id' => $request->subject_id,
-                'hidden' => false,
-                'admin_id' => 1,
-                'desc' => $request->description,
-            ]);
+            $this->courseRepository->createCourse($request);
             return response(['msg' => "Response ok"]);
         }
         else {

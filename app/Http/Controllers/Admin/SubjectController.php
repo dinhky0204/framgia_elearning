@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Subject;
+use App\Repositories\Subject\SubjectRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SubjectController extends Controller
 {
-    public function __construct()
+    protected $subjectRepository;
+    public function __construct(SubjectRepository $subjectRepository)
     {
         $this->middleware('admin');
+        $this->subjectRepository = $subjectRepository;
     }
 
     public function getSubjects()
@@ -22,10 +25,7 @@ class SubjectController extends Controller
     public function editSubject(Request $request)
     {
         if ($request->ajax()) {
-            $subject = Subject::where('id', intval($request->id))->first();
-            $subject->name = $request->name;
-            $subject->description = $request->description;
-            $subject->save();
+            $this->subjectRepository->editSubject($request);
             return response(['msg' => 'Response ok']);
         } else {
             return view('admin.contents.overview');
@@ -34,15 +34,14 @@ class SubjectController extends Controller
 
     public function deleteSubject($subject_id)
     {
-        $deletedSubject = Subject::where('id', '=', $subject_id)
-            ->update(['hidden' => 1]);
+        $this->subjectRepository->deleteSubject($subject_id);
         return redirect()->route('admin_subjects');
     }
 
     public function createSubject(Request $request)
     {
         if ($request->ajax()) {
-            Subject::create(['name' => $request->name, 'description' => $request->description, 'hidden' => 0]);
+            $this->subjectRepository->createSubject($request);
             return response(['msg' => 'Response ok']);
         } else {
             return view('admin.contents.overview');

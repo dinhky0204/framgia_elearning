@@ -15,8 +15,7 @@
         "monolog/monolog": "^1.22",
         "twig/twig": "1.31.*",
         "symfony/twig-bridge": "v3.2.*",
-        "ext-gd" : " *",
-        "minimum-stability": "dev"
+        "ext-gd" : " *"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

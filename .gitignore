@@ -16,3 +16,4 @@ npm-debug.log
 composer.lock
 /public/assets
 /resources/views/vendor
+.framgia-ci-reports

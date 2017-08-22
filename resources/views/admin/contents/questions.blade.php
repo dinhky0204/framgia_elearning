@@ -42,9 +42,7 @@
                                             {{trans('admin_questions.edit')}}
                                         </a>
                                     </td>
-
                                 </tr>
-
                             @endforeach
                             </tbody>
                         </table>

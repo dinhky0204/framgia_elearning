@@ -9,7 +9,9 @@
 namespace App\Models;
 
 
-class Question extends BaseModel
+use Illuminate\Database\Eloquent\Model;
+
+class Question extends Model
 {
     protected $fillable = [
         'id',
@@ -23,10 +25,10 @@ class Question extends BaseModel
 
     public function Answers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class, 'question_type_id');
     }
     public function users() {
         return $this->belongsToMany(User::class);
     }
-    
+
 }
