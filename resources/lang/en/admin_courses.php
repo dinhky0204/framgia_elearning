@@ -8,5 +8,6 @@ return array(
     "delete" => "Delete",
     "delete-course" => "Delete Course",
     "update-course" => "Update Course",
+    "show" => "Show Question Of Course",
 );
 ?>

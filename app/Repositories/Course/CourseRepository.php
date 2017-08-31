@@ -10,6 +10,8 @@ namespace App\Repositories\Course;
 
 
 use App\Models\Course;
+use App\Models\Question;
+use App\Models\QuestionType;
 use App\Repositories\EloquentRepository;
 use Illuminate\Http\Request;
 
@@ -37,7 +39,13 @@ class CourseRepository extends EloquentRepository implements CourseRepositoryInt
                 'subject_id' => $request->new_subject_id
             ]);
     }
-
+    public function getQuestion($course_id) {
+        $list_question = Question::where('course_id', $course_id)->get();
+        foreach ($list_question as $question) {
+            $question->type = QuestionType::where('id', $question->question_type_id)->first();
+        }
+        return $list_question;
+    }
     public function getModel()
     {
         return Course::class;

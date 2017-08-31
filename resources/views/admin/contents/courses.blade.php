@@ -24,23 +24,27 @@
                                 <th><i class="icon_profile"></i>{{ trans('admin_courses.name') }}</th>
                                 <th><i class="icon_document"></i>{{ trans('admin_courses.language') }}</th>
                                 <th><i class="icon_star"></i> {{ trans('admin_courses.description') }} </th>
+                                <th><i class="icon_star"></i> {{ trans('admin_courses.show') }} </th>
                                 <th><i class="icon_adjust-horiz"></i>{{ trans('admin_courses.edit') }}</th>
                                 <th><i class="icon_cogs"></i>{{ trans('admin_courses.delete') }}</th>
                             </tr>
 
-                            @foreach($data as $element)
-
+                            @foreach($data as $key => $element)
                             <tr>
                                 <td> {{ $element->name }} </td>
                                 <td> {{ $element->subject->name }} </td>
                                 <td> {{ $element->desc }}</td>
+                                <td>
+                                    <a href="{{route('admin_show_course', $key+1)}}" class="btn btn-success">
+                                        Show
+                                    </a>
+                                </td>
                                 <td>
                                     <div>
                                         @include('admin.contents.editCourse_modal')
                                     </div>
                                 </td>
                                 <td>
-
                                     {!! Form::open(['action' => ['Admin\CourseController@deleteCourse', $element->id],
                                         'method' => 'post']) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}

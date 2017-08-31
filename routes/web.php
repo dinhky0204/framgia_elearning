@@ -39,6 +39,7 @@ Route::post('/admin/subjects', 'Admin\SubjectController@createSubject')->name('a
 
 Route::get('/admin/courses','Admin\CourseController@getCourses')->name('admin_courses');
 Route::delete('/admin/courses/{id}','Admin\CourseController@deleteCourse')->name('admin_delete_course');
+Route::get('/admin/course/{course_id}', 'Admin\CourseController@viewCourse')->name('admin_show_course');
 Route::put('/admin/courses', 'Admin\CourseController@editCourse')->name('admin_edit_course');
 Route::post('/admin/courses', 'Admin\CourseController@createCourse')->name('admin_create_course');
 
@@ -62,3 +63,5 @@ Route::post('/admin/questions/create', 'Admin\QuestionController@createQuestion'
 Route::get('/admin/login', 'Admin\LoginController@index');
 Route::post('/admin/login', 'Admin\LoginController@login')->name('admin_login');
 Route::get('/admin/logout', 'Admin\LoginController@adminLogout')->name('admin_logout');
+Route::post('chat/test', 'ChatTestController@chat');
+Route::get('chat/test', 'ChatTestController@chatTest');

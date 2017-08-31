@@ -25,10 +25,13 @@ class Question extends Model
 
     public function Answers()
     {
-        return $this->hasMany(Answer::class, 'question_type_id');
+        return $this->hasMany(Answer::class);
+    }
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
     public function users() {
         return $this->belongsToMany(User::class);
     }
-
 }

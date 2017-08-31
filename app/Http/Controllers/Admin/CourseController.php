@@ -23,6 +23,12 @@ class CourseController extends Controller
 
         return view('admin.contents.courses', ['data' => $data, 'subjects' => $subjects]);
     }
+    public function viewCourse($course_id) {
+        $course = $this->courseRepository->find($course_id);
+        $list_question = $this->courseRepository->getQuestion($course_id);
+//        dd($list_question);
+        return view('admin.contents.view_course', ['course' => $course, 'list_question' => $list_question]);
+    }
 
     public function editCourse(Request $request)
     {
