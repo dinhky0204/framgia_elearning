@@ -11,6 +11,7 @@ use App\Models\FollowStudent;
 use App\Models\Question;
 use App\Models\StudentAnswerQuestionExact;
 use App\Models\StudentCourseEnrollment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -31,14 +32,91 @@ class ProfileController extends Controller
                 $point = $point + $tmp->point;
             }
         }
+        $list_following = FollowStudent::where('following', $user['id'])->get();
+        foreach ($list_following as $value) {
+            $value->follow = User::where('id', $value['follower'])->first();
+        }
+        $list_follower = FollowStudent::where('follower', $user['id'])->get();
+        foreach ($list_follower as $value) {
+            $value->follow = User::where('id', $value['following'])->first();
+        }
+        $other_user = [];
+        foreach (User::all() as $key => $value) {
+            if(!FollowStudent::where('following', $user['id'])->where('follower', $value['id'])->count() && $value['id'] != $user['id']) {
+                array_push($other_user, $value);
+            }
+        }
+        $new_user = User::all()->count() - $following - $follower - 1;
         return view('auth.profile',
             [
                 'user' => $user,
                 'following' => $following,
                 'follower' => $follower,
                 'course' => $course,
-                'point' => $point
+                'point' => $point,
+                'new_user' => $new_user,
+                'list_following' => $list_following,
+                'list_follower' => $list_follower,
+                'other_user' => $other_user
             ]);
+    }
+    public function showUser($user_id) {
+        $point = 0;
+        $current_user = Auth::user();
+        $user = User::where('id', $user_id)->first();
+        $flag = FollowStudent::where('following', $current_user['id'])
+            ->where('follower', $user['id'])->count();
+        if($flag) {
+            $status = 1;
+        }
+        else {
+            $status = 0;
+        }
+        $following = FollowStudent::where('following', $user_id)->count();
+        $follower = FollowStudent::where('follower', $user_id)->count();
+        $course = StudentCourseEnrollment::where('user_id', $user_id)->count();
+        $list_question = StudentAnswerQuestionExact::where('user_id', $user_id)->get();
+        foreach ($list_question as $question) {
+            $tmp = Question::where('id', $question->question_id)->first();
+            if($tmp) {
+                $point = $point + $tmp->point;
+            }
+        }
+        $list_following = FollowStudent::where('following', $user_id)->get();
+        foreach ($list_following as $value) {
+            $value->follow = User::where('id', $value['follower'])->first();
+        }
+        $list_follower = FollowStudent::where('follower', $user_id)->get();
+        foreach ($list_follower as $value) {
+            $value->follow = User::where('id', $value['following'])->first();
+        }
+        $new_user = User::all()->count() - $following - $follower - 1;
+        return view('auth.show_user',
+            [
+                'user' => $user,
+                'following' => $following,
+                'follower' => $follower,
+                'course' => $course,
+                'point' => $point,
+                'new_user' => $new_user,
+                'list_following' => $list_following,
+                'list_follower' => $list_follower,
+                'status' => $status
+            ]);
+    }
+    public function followUser(Request $request, $user_id) {
+        $user = Auth::user();
+        FollowStudent::create([
+            'following' => $user['id'],
+            'follower' => $user_id
+        ]);
+        return redirect()->back();
+    }
+    public function unfollowUser($user_id) {
+        $user = Auth::user();
+        FollowStudent::where('following', $user['id'])
+            ->where('follower', $user_id)->delete();
+        return redirect()->back();
     }
     public function editProfile()
     {

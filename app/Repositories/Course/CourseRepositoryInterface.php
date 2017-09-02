@@ -13,4 +13,5 @@ interface CourseRepositoryInterface
 {
     public function createCourse(Request $request);
     public function updateCourse(Request $request);
+    public function getContentToLearn($course_id);
 }

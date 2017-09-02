@@ -104,6 +104,9 @@
                                                    name="answer-content-{{$answer->id}}">
                                         </td>
                                         <td>
+                                            <div class="radio">
+                                                <label><input type="radio" name="optradio">Option 1</label>
+                                            </div>
                                             <select class="selectpicker show-tick" data-style="btn-primary"
                                                     id="answer-correct-{{$answer->id}}"
                                                     name="answer-correct-{{$answer->id}}">

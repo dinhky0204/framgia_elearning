@@ -11,5 +11,5 @@ use Illuminate\Http\Request;
 interface AnswerRepositoryInterface
 {
     public function createAnswer(Request $request, $question_id);
-    public function updateAnswer(Request $request, $question_id);
+    public function updateAnswer(Request $request, $question_id, $answer);
 }

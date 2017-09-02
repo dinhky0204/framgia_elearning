@@ -49,8 +49,28 @@ $(document).ready(function () {
     var count = 0;
     var point = 0;
     var correct_questions = [];
+    $('#follower').click(function () {
+       $('#sectionB').show();
+       $('#sectionA').hide();
+       $('#sectionC').hide();
+    });
+    $('#following').click(function () {
+        $('#sectionA').show();
+        $('#sectionB').hide();
+        $('#sectionC').hide();
+    });
+    $('#other_user').click(function () {
+        $('#sectionB').hide();
+        $('#sectionA').hide();
+        $('#sectionC').show();
+    });
+    $("#myTab li:eq(1) a").tab('show');
     $(".change-pass").click(function () {
         $(".new-pass").show();
+    });
+    $(".flippable").click(function(){
+        console.log('ok');
+        $(this).toggleClass("flipme");
     });
     clickQuestion();
     moveProgressBar();
@@ -59,6 +79,7 @@ $(document).ready(function () {
     unfollowCourse();
     course_progress();
     box_text();
+
     $(window).resize(function() {
         moveProgressBar();
     });
@@ -241,4 +262,5 @@ $(document).ready(function () {
     $(".change-pass").click(function () {
         $(".new-pass").show();
     });
+
 });

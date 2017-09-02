@@ -9,13 +9,12 @@ body {
 
 #page-container {
     margin: 0 auto;
-    width: 100%;
 }
 
 .page-container {
     background-color: #e9e9e9 !important;
     min-width: 100%;
-    min-height: 100%;
+    min-height: 550px;
     margin: 0 auto;
 }
 
@@ -2623,4 +2622,146 @@ footer{
         margin-left: 0;
     }
 
+}
+
+
+.learn-container {
+    margin-top: 6%;
+}
+.learn-course-container {
+    padding-top: 5%;
+}
+.flip-container {
+    perspective: 1000;
+    margin: 10px;
+    float: left;
+    cursor: pointer;
+}
+.flip-container .flippable {
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+.flip-container .flipme {
+    transform: rotateY(180deg);
+}
+.flip-container,
+.front,
+.back {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 5px;
+}
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.front {
+    z-index: 2;
+    color: white;
+    display: flex;
+}
+.front span {
+    font-size: 20px;
+    position: absolute;
+    top: -30px;
+    left: 10px;
+    font-family: verdana;
+}
+.front img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.back {
+    transform: rotateY(180deg);
+    font-size: 18px;
+    border: 1px solid;
+    font-family: Verdana;
+    color: white;
+}
+.ac-bicycle .front {
+    background: #1189d1;
+}
+.ac-bicycle .back {
+    background: #052c44;
+    border-color: #86cbf5;
+}
+.ac-car .front {
+    background: #18b755;
+}
+.ac-car .back {
+    background: #063016;
+    border-color: #7aeea7;
+}
+.ac-truck .front {
+    background: #f3b50b;
+}
+.ac-truck .back {
+    background: #614804;
+    border-color: #fbe19c;
+}
+.ac-umbrella .front {
+    background: #ef4809;
+}
+.ac-umbrella .back {
+    background: #5c1c03;
+    border-color: #fbb296;
+}
+.ac-plane .front {
+    background: #E82C0C;
+}
+.ac-plane .back {
+    background: #571004;
+    border-color: #f9a294;
+}
+
+
+
+
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#hero1 {
+    background: url(https://4.bp.blogspot.com/_AQ0vcRxFu0A/S9shDGGyMTI/AAAAAAAAAYk/kn3WTkY2LoQ/s1600/IMG_0714.JPG);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+#hero2 {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/21555/Melissani-cave-natural.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.hero, .content {
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.inner {
+    min-height: 600px;
+    position: relative;
+}
+
+.hero .inner {
+    background: rgba(0, 0, 0, 0.7) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAD0lEQVQIW2NkQABjRmQOAAM+AGkQsDBSAAAAAElFTkSuQmCC) repeat;
 }

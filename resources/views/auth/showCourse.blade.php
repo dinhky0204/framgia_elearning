@@ -25,7 +25,11 @@
                     </div>
                 </div>
                 @if($active == 1)
-                    <a href="{{route('test_course', $course->id)}}" class="col-md-2 col-md-offset-3 btn btn-primary">Làm bài kiểm tra</a>
+                    <div class="btn-group col-md-12" >
+                        <a href="{{route('test_course', $course->id)}}" class="col-md-2 col-md-offset-3 btn btn-primary">Làm bài kiểm tra</a>
+                        <a href="{{route('learn_course', $course->id)}}" class="col-md-1 col-md-offset-6 btn btn-success">Học</a>
+                    </div>
+
                 @else
                     <a href="#" class="col-md-4 col-md-offset-3 btn btn-danger">Bạn chưa đăng ký khóa học này</a>
                 @endif

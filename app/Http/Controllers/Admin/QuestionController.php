@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Question;
 use App\Repositories\Answer\AnswerRepository;
 use App\Repositories\Question\QuestionRepository;
 use Illuminate\Http\Request;
@@ -49,10 +50,13 @@ class QuestionController extends Controller
     public function createAnswer(Request $request, $question_id) {
         if(!$request->hasFile('answer-desc')) {
             $answer = $this->answerRepository->createAnswer($request, $question_id);
+            $question = Question::where('id', $question_id)->first();
+            $question->total_answer = $question->total_answer + 1;
+            $question->save();
         }
         else {
             $answer = $this->answerRepository->createAnswer($request, $question_id);
-            $this->answerRepository->updateAnswer($request, $question_id);
+            $this->answerRepository->updateAnswer($request, $question_id, $answer);
         }
 
         return redirect()->back();

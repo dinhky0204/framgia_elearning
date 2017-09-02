@@ -2,8 +2,10 @@
 namespace App\Repositories\Answer;
 
 use App\Models\Answer;
+use App\Models\Question;
 use App\Repositories\EloquentRepository;
 use Illuminate\Http\Request;
+use Image;
 
 /**
  * Created by PhpStorm.
@@ -29,7 +31,7 @@ class AnswerRepository extends EloquentRepository implements AnswerRepositoryInt
         ]);
     }
 
-    public function updateAnswer(Request $request, $question_id)
+    public function updateAnswer(Request $request, $question_id, $answer)
     {
         $answer_img = $request->file('answer-desc');
         $filename = 'answer' . $answer->id . '.' . $answer_img->getClientOriginalExtension();

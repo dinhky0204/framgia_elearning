@@ -28,6 +28,9 @@ Route::post('/passwordreset/sendmail', 'Auth\ResetPasswordController@sendmailToR
 Route::get('/profile', 'Auth\ProfileController@showProfile')->name('show_profile');
 Route::get('/profile/edit', 'Auth\ProfileController@editProfile')->name('edit_profile');
 Route::post('/profile/save', 'Auth\ProfileController@saveProfile')->name('profile-save');
+Route::get('/user/{user_id}', 'Auth\ProfileController@showUser')->name('show-user');
+Route::post('/user/{user_id}', 'Auth\ProfileController@followUser');
+Route::delete('/user/{user_id}', 'Auth\ProfileController@unfollowUser');
 
 Route::get('/admin/homepage', 'Admin\HomePageController@homepage')->name('admin_homepage');
 Route::get('/admin/overview', 'Admin\OverViewController@overview')->name('admin_overview');
@@ -48,6 +51,7 @@ Route::delete('/admin/users/{id}','Admin\UserController@deleteUser');
 Route::get('/course/{course_id}', 'Auth\CourseController@showCourse')->name('course_user');
 Route::get('/follow_course', 'Auth\CourseController@listfollowCourses')->name('list_follow_course');
 Route::post('/course/{course_id}/test', 'Auth\CourseController@testCourse');
+Route::get('/course/{course_id}/learn', 'Auth\CourseController@learnCourse')->name('learn_course');
 Route::get('/course/{course_id}/test', 'Auth\CourseController@testCourse')->name('test_course');
 Route::get('list_course/{subject_id}', 'Auth\CourseController@listCourse')->name('list_course');
 Route::post('list_course/{subject_id}/follow', 'Auth\CourseController@followCourse')->name('follow_course');

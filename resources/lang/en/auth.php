@@ -38,6 +38,7 @@ return [
     'friend' => 'Friend',
     'following' => 'Following',
     'follower' => 'Follower',
+    'new-user' => 'New User',
     'upload-avatar' => 'Upload new picture',
     'update-profile' => 'Update profile',
     'old-password' => 'Old password',

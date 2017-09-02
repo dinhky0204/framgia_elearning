@@ -15,12 +15,19 @@ use App\Models\Question;
 use App\Models\StudentAnswerQuestionExact;
 use App\Models\StudentCourseEnrollment;
 use App\Models\Subject;
+use App\Repositories\Course\CourseRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use JavaScript;
 
 class CourseController
 {
+    protected $courseRepository;
+    public function __construct(CourseRepository $courseRepository)
+    {
+        $this->courseRepository = $courseRepository;
+    }
+
     public function testCourse(Request $request, $course_id) {
         $user = Auth::user();
         $list_question = Question::where('course_id', $course_id)->get();
@@ -116,5 +123,9 @@ class CourseController
                 ->where('user_id', $user['id'])->delete();
             return response('Request unfollow ok');
         }
+    }
+    public function learnCourse($course_id) {
+        $data = $this->courseRepository->getContentToLearn($course_id);
+        return view('auth.learn_course', ['content' => $data]);
     }
 }

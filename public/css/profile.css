@@ -33,6 +33,24 @@
     width: 420px;
     margin-top: -380px !important;
 }
+.bs-example {
+    position: absolute;
+    max-width: 90%;
+    margin-top: -15%;
+}
+.user-info {
+    margin-top: 20px;
+}
+.user-info img{
+    width: 100%;
+    height: 100%;
+}
+.user-info span {
+    position: absolute;
+}
+#myTab {
+    border-bottom: 1px #00a0df solid;
+}
 .profile-advance h2 {
     font-size: 20px;
     font-weight: 500;
@@ -43,14 +61,26 @@
     border: 2px solid #dadada;
     border-radius: 10px;
     display: block;
-    margin: 0 40px 40px;
+    margin: 0 40px 40px -10px;
     padding: 10px 30px;
     font-size: 20px;
+    font-weight: 500;
+
+}
+.bar-follow {
+    background: #e9e9e9;
+    display: block;
+    margin: 0 40px 0px;
+    padding: 10px 30px;
+    font-size: 16px;
     font-weight: 500;
 }
 .follow {
     color: #0000AA!important;
     display: block!important;
+}
+.follow-img img {
+
 }
 .box-advance h3 {
     color: #999;

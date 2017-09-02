@@ -9,6 +9,7 @@
 namespace App\Repositories\Course;
 
 
+use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Question;
 use App\Models\QuestionType;
@@ -43,11 +44,22 @@ class CourseRepository extends EloquentRepository implements CourseRepositoryInt
         $list_question = Question::where('course_id', $course_id)->get();
         foreach ($list_question as $question) {
             $question->type = QuestionType::where('id', $question->question_type_id)->first();
+            $question->list_answer = Answer::where('question_id', $question->id)->get();
         }
         return $list_question;
     }
     public function getModel()
     {
         return Course::class;
+    }
+
+    public function getContentToLearn($course_id)
+    {
+        $list_question = Question::where('course_id', $course_id)->get();
+        foreach ($list_question as $question) {
+            $question->correctAnswer = Answer::where('question_id', $question->id)
+                ->where('correct', true)->first();
+        }
+        return $list_question;
     }
 }

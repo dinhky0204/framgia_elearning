@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Course;
 use App\Models\Subject;
 use App\Repositories\Course\CourseRepository;
+use App\Repositories\Question\QuestionRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CourseController extends Controller
 {
     protected $courseRepository;
-    public function __construct(CourseRepository $courseRepository)
+    protected  $questionRepository;
+    public function __construct(CourseRepository $courseRepository, QuestionRepository $questionRepository)
     {
         $this->courseRepository = $courseRepository;
+        $this->questionRepository = $questionRepository;
     }
 
     public function getCourses()
@@ -26,7 +29,6 @@ class CourseController extends Controller
     public function viewCourse($course_id) {
         $course = $this->courseRepository->find($course_id);
         $list_question = $this->courseRepository->getQuestion($course_id);
-//        dd($list_question);
         return view('admin.contents.view_course', ['course' => $course, 'list_question' => $list_question]);
     }
 

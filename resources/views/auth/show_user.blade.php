@@ -7,7 +7,21 @@
             <img src="/avatar/{{$user['avatar']}}" alt="Avatar" class="img-circle">
             <h1 class="profile-name" style="color: #0a0a0a">{{$user['name']}}</h1>
             <h4 class="profile-email">{{$user['email']}}</h4>
-            <a href="{{route('edit_profile')}}" class="button-profile" style="vertical-align:middle"><span>@lang('auth.edit-profile')</span></a>
+            @if($status)
+                {!! Form::open(['action' => ['Auth\ProfileController@followUser', $user['id']], 'method' => 'post']) !!}
+                {!! Form::hidden('_method', 'DELETE') !!}
+            <div class="col-md-4 col-md-offset-4">
+                {!! Form::submit('Unfollow', ['class' => "col-offset-md-9 btn btn-danger"]) !!}
+            </div>
+
+                {!! Form::close() !!}
+            @else
+                {!! Form::open(['action' => ['Auth\ProfileController@followUser', $user['id']], 'method' => 'post']) !!}
+                <div class="col-md-4 col-md-offset-4">
+                    {!! Form::submit('Follow', ['class' => "btn btn-primary"]) !!}
+                </div>
+                {!! Form::close() !!}
+            @endif
         </div>
         <div class="profile-advance">
             <div class="box-advance">
@@ -28,15 +42,14 @@
                 <ul class="nav nav-tabs" id="myTab">
                     <li><a data-toggle="tab" href="#sectionA" id="following">Following</a></li>
                     <li><a data-toggle="tab" href="#sectionB" id="follower">Follower</a></li>
-                    <li><a data-toggle="tab" href="#sectionC" id="other_user">Other User</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="sectionA" class="tab-pane fade in active">
                         @foreach($list_following as $value)
-                        <a href="{{route('show-user', [$value['follower']])}}" class="col-md-4 user-info">
-                            <img src="/avatar/{{$value['follow']['avatar']}}" alt="">
-                            <span>{{$value['follow']['name']}}</span>
-                        </a>
+                            <a href="{{route('show-user', [$value['follower']])}}" class="col-md-4 user-info">
+                                <img src="/avatar/{{$value['follow']['avatar']}}" alt="">
+                                <span>{{$value['follow']['name']}}</span>
+                            </a>
                         @endforeach
                     </div>
                     <div id="sectionB" class="tab-pane fade" style="display: block">
@@ -47,14 +60,7 @@
                             </a>
                         @endforeach
                     </div>
-                    <div id="sectionC" class="tab-pane fade" style="display: block">
-                        @foreach($other_user as $value)
-                            <a href="{{route('show-user', $value->id)}}" class="col-md-4 user-info">
-                                <img src="/avatar/{{$value->avatar}}" alt="">
-                                <span>{{$value->name}}</span>
-                            </a>
-                        @endforeach
-                    </div>
+
                 </div>
             </div>
         </div>
