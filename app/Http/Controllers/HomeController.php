@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Course;
 use App\Models\StudentAnswerQuestionExact;
 use App\Models\StudentCourseEnrollment;
+use App\Repositories\Notification\NotificationRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +18,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public $notificationRepository;
+    public function __construct(NotificationRepository $notificationRepository)
     {
+        $this->notificationRepository = $notificationRepository;
         $this->middleware('auth');
     }
 
@@ -42,6 +45,13 @@ class HomeController extends Controller
             $progress = 0;
         else
             $progress = $total_exact/$total_question*100;
-        return view('home', ['total_question' => $total_question, 'total_exact' => $total_exact, 'progress' => $progress]);
+        return view('home', ['progress' => $progress]);
+    }
+    public function notification(Request $request) {
+        if ($request->ajax()) {
+            $list_noti = $this->notificationRepository->getListNoti($request->get('user_id'));
+            NotificationRepository::clearNotificationOfUser($request->get('user_id'));
+            return response($list_noti);
+        }
     }
 }

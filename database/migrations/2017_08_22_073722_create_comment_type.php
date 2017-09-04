@@ -13,7 +13,7 @@ class CreateCommentType extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('comment_type_name');
             $table->string('description');
@@ -29,6 +29,6 @@ class CreateCommentType extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('comments');
     }
 }

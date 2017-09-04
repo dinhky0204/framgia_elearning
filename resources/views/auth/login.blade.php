@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if($status = Session::get('checkmail'))
+        <div class="checkmail-flash">
+            {{$status}}
+        </div>
+    @endif
     <section id="hero1" class="hero">
         <div class="inner">
             <div class="form">

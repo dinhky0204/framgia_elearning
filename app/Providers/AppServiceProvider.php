@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\NotificationUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {

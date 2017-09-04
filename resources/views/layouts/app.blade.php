@@ -62,12 +62,13 @@
                             </li>
                         </ul>
                     </li>
+
                     @if (Auth::guest())
                         <li>
                             <a href="{{route('login')}}" class="btn btn-primary">Log In/Sign up</a>
                         </li>
                     @else
-
+                        <input id="user_info" type="hidden" value = "{{Auth::user()->id}}">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false">
@@ -98,12 +99,24 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <div class="dropdown dropdown-notifi">
+                                <div class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    <span class="notification-total" id="app_{{Auth::user()->id}}">{{$total_notification}}</span>
+                                    <span class="glyphicon glyphicon-bell"></span>
+                                </div>
+                                <ul class="dropdown-menu dropdown-menu-notifi" style="width: auto!important;">
+
+                                </ul>
+                            </div>
+                        </li>
                     @endif
 
                 </ul>
             </nav>
         </div>
     </header>
+
     @yield('content')
     @yield('auth.user')
     @yield('slider')
@@ -160,6 +173,15 @@
 <script src="{{ asset('assets/bower/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/login.js') }}"></script>
+<script src="{{ asset('js/notification.js') }}"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    var user = <?php echo Auth::user() ?> ;
+    Echo.channel('notification')
+            .listen('MessageSent', (e) => {
+            $("#app_" + e.user_id).text(parseInt($("#app_" + (e.user_id)).text()) + 1);
+        });
+
+</script>
 </body>
 </html>

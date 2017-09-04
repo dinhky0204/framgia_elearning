@@ -85,11 +85,6 @@ class RegisterController extends Controller
         } else {
             User::where('email', $request->input('email'))->where('active', 0)->delete();
             $data = $this->create($request->all())->toArray();
-            StudentCourseEnrollment::create([
-                'progress' => 0,
-                'course_id' => 1,
-                'user_id' => $data['id']
-            ]);
             $minutes = 1;
             $random_token = str_random(30);
             $data['token'] = $random_token;
@@ -98,7 +93,7 @@ class RegisterController extends Controller
                 $message->to($data['email']);
                 $message->subject('Registration Confirmation');
             });
-            return redirect(route('login'));
+            return redirect(route('login'))->with('checkmail', 'Please check your email to active.');
         }
     }
 
@@ -109,6 +104,11 @@ class RegisterController extends Controller
             $user = User::where('email', $value)->first();
             $user->active = 1;
             $user->save();
+            StudentCourseEnrollment::create([
+                'progress' => 0,
+                'course_id' => 1,
+                'user_id' => $user->id
+            ]);
             return redirect(route('home'));
         }
         return redirect(route('login'));

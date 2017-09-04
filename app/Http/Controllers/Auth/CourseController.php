@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Auth;
 
 
+use App\Events\MessageSent;
 use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Question;

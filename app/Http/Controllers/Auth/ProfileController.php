@@ -12,12 +12,19 @@ use App\Models\Question;
 use App\Models\StudentAnswerQuestionExact;
 use App\Models\StudentCourseEnrollment;
 use App\Models\User;
+use App\Repositories\Notification\NotificationRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Image;
+use App\Events\MessageSent;
 class ProfileController extends Controller
 {
+    protected $notificationUser;
+    public function __construct(NotificationRepository $notificationUser)
+    {
+        $this->notificationUser = $notificationUser;
+    }
     public function showProfile()
     {
         $point = 0;
@@ -101,11 +108,13 @@ class ProfileController extends Controller
                 'new_user' => $new_user,
                 'list_following' => $list_following,
                 'list_follower' => $list_follower,
-                'status' => $status
+                'status' => $status,
             ]);
     }
     public function followUser(Request $request, $user_id) {
         $user = Auth::user();
+        $this->notificationUser->createNotification($user_id, $user['id'], 'Follow');
+        event(new MessageSent('Test message sent', $user_id));
         FollowStudent::create([
             'following' => $user['id'],
             'follower' => $user_id
@@ -121,7 +130,9 @@ class ProfileController extends Controller
     public function editProfile()
     {
         $user = Auth::user();
-        return view('auth.editProfile', ['user' => $user]);
+        return view('auth.editProfile', [
+            'user' => $user,
+        ]);
     }
     public function saveProfile(Request $request)
     {
