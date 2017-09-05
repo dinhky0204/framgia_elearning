@@ -30,6 +30,8 @@
                         <a href="{{route('learn_course', $course->id)}}" class="col-md-1 col-md-offset-6 btn btn-success">Học</a>
                     </div>
 
+                @elseif(Auth::guest())
+                    <a href="{{route('login')}}" class="col-md-4 col-md-offset-3 btn btn-warning">Đăng nhập để tham gia khóa học</a>
                 @else
                     <a href="#" class="col-md-4 col-md-offset-3 btn btn-danger">Bạn chưa đăng ký khóa học này</a>
                 @endif

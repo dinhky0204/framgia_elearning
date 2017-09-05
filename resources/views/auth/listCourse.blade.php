@@ -32,7 +32,9 @@
                                     <div class="box-course">
                                         <?= $course->desc ?>
                                     </div>
-                                    @if($course->follow == 0)
+                                    @if(Auth::guest())
+                                        <div class="btn btn-primary follow-course-btn" value ="{{$course->id}}">View more</div>
+                                    @elseif($course->follow == 0)
                                         <div class="btn btn-success follow-course-btn" value ="{{$course->id}}">Follow</div>
                                     @else
                                         <div class="btn btn-danger unfollow-course-btn" value ="{{$course->id}}">Unfollow</div>
