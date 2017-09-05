@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Course;
+use App\Models\Question;
+use App\Models\QuestionType;
 use App\Models\Subject;
 use App\Repositories\Course\CourseRepository;
 use App\Repositories\Question\QuestionRepository;
@@ -29,7 +31,12 @@ class CourseController extends Controller
     public function viewCourse($course_id) {
         $course = $this->courseRepository->find($course_id);
         $list_question = $this->courseRepository->getQuestion($course_id);
-        return view('admin.contents.view_course', ['course' => $course, 'list_question' => $list_question]);
+        return view('admin.contents.view_course', [
+            'course' => $course,
+            'list_question' => $list_question,
+            'list_type' => QuestionType::all(),
+            'list_course' => Course::all()
+        ]);
     }
 
     public function editCourse(Request $request)

@@ -13,7 +13,6 @@
             <div class="col-md-4 col-md-offset-4">
                 {!! Form::submit('Unfollow', ['class' => "col-offset-md-9 btn btn-danger"]) !!}
             </div>
-
                 {!! Form::close() !!}
             @else
                 {!! Form::open(['action' => ['Auth\ProfileController@followUser', $user['id']], 'method' => 'post']) !!}
