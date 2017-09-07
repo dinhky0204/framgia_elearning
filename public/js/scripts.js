@@ -219,25 +219,58 @@ function deleteAnswer() {
         $("#answer-content-" + parent_id[3]).attr('value', "");
     });
 }
+function checkCorrect() {
+    $(".correct").click(function () {
+        var tmp = $(this).val();
+        $(".correct").val(tmp);
+    })
+}
+
+function addNewAnswer() {
+    var total = 0;
+    var answer = $(".box-answer").html();
+    $(".choose-total-answer").change(function () {
+        var total_answer = $(this).find(':selected').text();
+        $(".list-answer").length;
+        var plus_answer = total_answer - $(".list-answer").length;
+        if(plus_answer>0) {
+            for (var i = 0; i<plus_answer; i++) {
+                $(answer).find("#new-answer-desc").attr('name', ("answer-desc-" + i));
+                $(".box-answer").append(answer);
+            }
+        }
+    });
+}
+function beforeSubmitCreateQuestion() {
+    var fields = [];
+
+    $(".answer-correct").click(function () {
+        $(".answer-correct").val("0");
+        $(this).val("1");
+        console.log("ok");
+    });
+    $("#question-create").click(function () {
+        $(".list-answer").each(function (key, value) {
+            let tmp = {};
+            $(value).find(":input").each(function () {
+                tmp[this.name] = $(this).val();
+            });
+            fields.push(tmp);
+        });
+        $("#question-object").val(JSON.stringify(fields));
+    });
+
+}
 
 $(document).ready(function () {
-    var list_question = JSON.parse($('#list_question').val());
-    console.log(list_question);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $.each(list_question, function (key, element) {
-        console.log(element);
-        $("#collap" + element.id).click(function () {
-            if($("#collap-content" + element.id).css('display') == 'none') {
-                $("#collap-content" + element.id).show();
-                console.log("collap-content" + element.id);
-            }
-            else $("#collap-content" + element.id).hide();
-        });
-    });
+    addNewAnswer();
+    beforeSubmitCreateQuestion();
+    checkCorrect();
     initializeJS();
     updateSubject();
     createSubject();

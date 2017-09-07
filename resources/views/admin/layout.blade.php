@@ -16,7 +16,6 @@
     {{ HTML::style('/assets/bower/elegant-icons/css/style.css') }}
     {{ HTML::style('/assets/bower/components-font-awesome/css/font-awesome.min.css') }}
     {{ HTML::style('/assets/bower/owl.carousel/dist/assets/owl.carousel.css') }}
-    {{ HTML::style('/assets/bower/jquery-ui/themes/base/jquery-ui.min.css') }}
     {{ HTML::style('/css/style.css') }}
     {{ HTML::style('/css/style-responsive.css') }}
     {{ HTML::style('/assets/bower/bootstrap-select/dist/css/bootstrap-select.min.css') }}

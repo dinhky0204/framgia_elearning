@@ -54,7 +54,8 @@ Route::get('/admin/questions/{question_id}', 'Admin\QuestionController@editQuest
 Route::delete('/admin/questions/{question_id}','Admin\QuestionController@deleteQuestion')->name('admin_delete_Question');
 Route::post('/admin/question/{question_id}/edit', 'Admin\QuestionController@checkeditQuestion')->name('admin_edit_question_check');
 Route::post('/admin/question/{question_id}', 'Admin\QuestionController@createAnswer')->name('admin_create_answer');
-Route::post('/admin/questions/create', 'Admin\QuestionController@createQuestion')->name('admin_create_question');
+Route::get('/admin/create_questions', 'Admin\QuestionController@createQuestion')->name('admin_create_question');
+Route::post('/admin/create_questions', 'Admin\QuestionController@checkCreateQuestion')->name('check_create_question');
 
 Route::get('/admin/login', 'Admin\LoginController@index');
 Route::post('/admin/login', 'Admin\LoginController@login')->name('admin_login');

@@ -71,17 +71,15 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
                 Answer::where('id', $answer->id)
                     ->update(['desc' => $filename]);
             }
-            if(intval($request->get('answer-correct-' . $answer->id)) != $answer->correct) {
-                if($answer->correct == 0)
-                {
-                    Answer::where('id', $answer->id)
-                        ->update(['correct'=> true]);
-                }
-                else {
-                    Answer::where('id', $answer->id)
-                        ->update(['correct'=> false]);
-                }
+            if(intval($request->get('optradio')) == $answer->id) {
+                Answer::where('id', $answer->id)
+                    ->update(['correct'=> true]);
             }
+            else {
+                Answer::where('id', $answer->id)
+                    ->update(['correct'=> false]);
+            }
+
             if($request->get('answer-tag-' . $answer->id) != $answer->tag) {
                 Answer::where('id', $answer->id)
                     ->update(['tag'=> $request->get('answer-tag-' . $answer->id)]);
@@ -91,14 +89,29 @@ class QuestionRepository extends EloquentRepository implements QuestionRepositor
 
     public function createQuestion(Request $request)
     {
-        return Question::create([
+        $question = Question::create([
             'question_content' => $request->get('question-content'),
-            'total_answer' => 0,
+            'total_answer' => $request->get('total-answer'),
             'point' => intval($request->get('question-point')),
             'description' => 'default',
             'course_id' => intval($request->get('question-course')),
             'question_type_id' => intval($request->get('question-type'))
         ]);
+        $course = Course::where('id', $request->get('question-course'))->first();
+        Course::where('id', $request->get('question-course'))->update([
+           'total_question' => $course->total_question + $request->get('question-point')
+        ]);
+        $list_answer = json_decode($request->get('question_object'));
+        foreach ($list_answer as $answer) {
+            Answer::create([
+                'tag' => $answer->answer_tag,
+                'answer_content' => $answer->answer_content,
+                'correct' => $answer->answer_correct,
+                'question_id' => $question->id,
+                'desc' => 'default.jpg'
+            ]);
+        }
+
     }
     public function deleteQuestion($question_id)
     {

@@ -45,12 +45,6 @@
                         <a href="{{route('list_course', 1)}}">COURSE</a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">FORUM</a>
-                    </li>
-                    <li class="nav-bar-item">
-                        <a href="#">About</a>
-                    </li>
-                    <li>
                         <a href="javascript:void(0)" class="site-nav-sub"><i
                                     class="fa fa-angle-down site-nav-arrow"></i>@lang('auth.language')</a>
                         <ul>

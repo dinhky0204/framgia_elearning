@@ -41,3 +41,6 @@ $('.tab a').on('click', function (e) {
     $(target).fadeIn(600);
 
 });
+$(".flippable").click(function(){
+    $(this).toggleClass("flipme");
+});
