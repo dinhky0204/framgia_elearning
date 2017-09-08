@@ -46,7 +46,7 @@ class LoginController extends Controller
         $input = $request->all();
         $email = $input['email'];
         $password = $input['password'];
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1, 'is_admin' => 0])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'is_admin' => 0])) {
             return view('welcome')->with('login_status', 'You are logined.');
         } else
             return redirect()->back()->with('login_status', 'Email or Password missing.');

@@ -50,12 +50,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class);
     }
-    public function user1()
-    {
-        return $this->belongsToMany(User::class);
-    }
-    public function user2()
-    {
-        return $this->belongsToMany(User::class);
-    }
 }

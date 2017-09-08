@@ -88,11 +88,11 @@ class RegisterController extends Controller
             $minutes = 1;
             $random_token = str_random(30);
             $data['token'] = $random_token;
-            Cache::add($random_token, $data['email'], $minutes);
-            Mail::send('mails.confirmation', $data, function ($message) use ($data) {
-                $message->to($data['email']);
-                $message->subject('Registration Confirmation');
-            });
+//            Cache::add($random_token, $data['email'], $minutes);
+//            Mail::send('mails.confirmation', $data, function ($message) use ($data) {
+//                $message->to($data['email']);
+//                $message->subject('Registration Confirmation');
+//            });
             return redirect(route('login'))->with('checkmail', 'Please check your email to active.');
         }
     }
