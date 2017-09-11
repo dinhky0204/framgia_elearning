@@ -16,13 +16,13 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/confirm/resetpass/{token}', 'Auth\ResetPasswordController@resetPasswordConfirm')->name('confirmresetpass');
 Route::get('/passwordreset', 'Auth\ResetPasswordController@index')->name('resetpassword');
 Route::post('/passwordreset/sendmail', 'Auth\ResetPasswordController@sendmailToReset')->name('sendmailToReset');
-//Route::post('/password/reset', 'Auth\ResetPasswordController@resetPass')->name('password_request');
 Route::get('/profile', 'Auth\ProfileController@showProfile')->name('show_profile');
 Route::get('/profile/edit', 'Auth\ProfileController@editProfile')->name('edit_profile');
 Route::post('/profile/save', 'Auth\ProfileController@saveProfile')->name('profile-save');
 Route::get('/user/{user_id}', 'Auth\ProfileController@showUser')->name('show-user');
 Route::post('/user/{user_id}', 'Auth\ProfileController@followUser');
 Route::delete('/user/{user_id}', 'Auth\ProfileController@unfollowUser');
+Route::get('/post/{post_id}', 'Auth\PostController@showPost')->name('user_show_post');
 
 Route::get('/admin/homepage', 'Admin\HomePageController@homepage')->name('admin_homepage');
 Route::get('/admin/overview', 'Admin\OverViewController@overview')->name('admin_overview');
@@ -57,8 +57,18 @@ Route::post('/admin/question/{question_id}', 'Admin\QuestionController@createAns
 Route::get('/admin/create_questions', 'Admin\QuestionController@createQuestion')->name('admin_create_question');
 Route::post('/admin/create_questions', 'Admin\QuestionController@checkCreateQuestion')->name('check_create_question');
 
+Route::get('/admin/show_post', 'Admin\PostController@index')->name('admin_show_posts');
+Route::get('/admin/create_post', 'Admin\PostController@createPost')->name('admin_create_posts');
+Route::post('/admin/create_post/save', 'Admin\PostController@savePost')->name('admin_save_posts');
+
 Route::get('/admin/login', 'Admin\LoginController@index');
 Route::post('/admin/login', 'Admin\LoginController@login')->name('admin_login');
 Route::get('/admin/logout', 'Admin\LoginController@adminLogout')->name('admin_logout');
-Route::post('chat/test', 'ChatTestController@chat');
-Route::get('chat/test', 'ChatTestController@chatTest');
+
+Route::post('/createComments/{post_id}', 'Auth\CommentController@store');
+Route::get('/comment/{comment_id}', 'Auth\CommentController@getComment');
+Route::post('/editComment/{comment_id}', 'Auth\CommentController@editComment');
+Route::delete('/deleteComment/{comment_id}', 'Auth\CommentController@deleteComment');
+Route::get('/getcomments/{post_id}', 'Auth\CommentController@index');
+Route::get('/list_post/{course_id}', 'Auth\PostController@postOfCourse')->name('posts_of_course');
+Route::get('/post/{post_id}', 'Auth\PostController@showPost');

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+{{ HTML::script('/assets/bower/jquery/dist/jquery.min.js') }}
+{{ HTML::script('js/progress.js') }}
     <div class="exam-container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 exam-content">
@@ -28,6 +30,7 @@
                     <div class="btn-group col-md-12" >
                         <a href="{{route('test_course', $course->id)}}" class="col-md-2 col-md-offset-3 btn btn-primary">Làm bài kiểm tra</a>
                         <a href="{{route('learn_course', $course->id)}}" class="col-md-1 col-md-offset-6 btn btn-success">Học</a>
+                        <a href="{{route('posts_of_course', $course->id)}}" class="col-md-2 col-md-offset-6 btn btn-warning">Xem bài viết</a>
                     </div>
 
                 @elseif(Auth::guest())

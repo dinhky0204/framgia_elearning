@@ -10,6 +10,12 @@
                 </a>
             </li>
             <li>
+                <a class="" href="{{route('admin_show_posts')}}">
+                    <i class="icon_documents"></i>
+                    <span>{{ trans('admin_sidebar.post') }}</span>
+                </a>
+            </li>
+            <li>
                 <a class="" href="{{route('admin_subjects')}}">
                     <i class="icon_ribbon_alt"></i>
                     <span>{{ trans('admin_sidebar.subjects') }}</span>

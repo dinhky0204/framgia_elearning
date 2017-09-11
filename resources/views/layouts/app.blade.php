@@ -17,7 +17,7 @@
     <link href="{{ asset('css/plugins.css') }}" rel="stylesheet">
     <link href="{{ asset('css/themes.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/login.css') }}" rel="stylesheet">--}}
 </head>
 <body>
 <div class="page-container">
@@ -114,6 +114,8 @@
     @yield('content')
     @yield('auth.user')
     @yield('slider')
+    @yield('posts')
+    @yield('show_post')
 </div>
 <footer class="footer-distributed">
 
@@ -168,7 +170,6 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/login.js') }}"></script>
 <script src="{{ asset('js/notification.js') }}"></script>
-<script src="{{ asset('js/progress.js') }}"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
     var user = <?php echo Auth::user() ?> ;

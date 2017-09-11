@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ HTML::style('/css/login.css') }}
     @if($status = Session::get('checkmail'))
         <div class="checkmail-flash">
             {{$status}}

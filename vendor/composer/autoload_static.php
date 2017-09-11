@@ -33,6 +33,10 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'U' => 
+        array (
+            'Unisharp\\Ckeditor\\' => 18,
+        ),
         'T' => 
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
@@ -128,6 +132,10 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Unisharp\\Ckeditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/unisharp/laravel-ckeditor',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -383,6 +391,7 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         'AddActiveToNotification' => __DIR__ . '/../..' . '/database/migrations/2017_09_04_035955_add_active_to_notification.php',
         'AddDescToAnswers' => __DIR__ . '/../..' . '/database/migrations/2017_08_09_054943_add_desc_to_answers.php',
         'AddDescToCourses' => __DIR__ . '/../..' . '/database/migrations/2017_08_12_025709_add_desc_to_courses.php',
+        'AddImageToPostsTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_11_024322_add_image_to_posts_table.php',
         'AddIsAdminToUsers' => __DIR__ . '/../..' . '/database/migrations/2017_08_12_080347_add_is_admin_to_users.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\MessageSent' => __DIR__ . '/../..' . '/app/Events/MessageSent.php',
@@ -391,16 +400,18 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         'App\\Http\\Controllers\\Admin\\HomePageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/HomePageController.php',
         'App\\Http\\Controllers\\Admin\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LoginController.php',
         'App\\Http\\Controllers\\Admin\\OverViewController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OverViewController.php',
+        'App\\Http\\Controllers\\Admin\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PostController.php',
         'App\\Http\\Controllers\\Admin\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/QuestionController.php',
         'App\\Http\\Controllers\\Admin\\SubjectController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SubjectController.php',
         'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
+        'App\\Http\\Controllers\\Auth\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/CommentController.php',
         'App\\Http\\Controllers\\Auth\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/CourseController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
+        'App\\Http\\Controllers\\Auth\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PostController.php',
         'App\\Http\\Controllers\\Auth\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ProfileController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
-        'App\\Http\\Controllers\\ChatTestController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChatTestController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -413,9 +424,11 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\Answer' => __DIR__ . '/../..' . '/app/Models/Answer.php',
         'App\\Models\\BaseModel' => __DIR__ . '/../..' . '/app/Models/BaseModel.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\Course' => __DIR__ . '/../..' . '/app/Models/Course.php',
         'App\\Models\\FollowStudent' => __DIR__ . '/../..' . '/app/Models/FollowStudent.php',
         'App\\Models\\NotificationUser' => __DIR__ . '/../..' . '/app/Models/NotificationUser.php',
+        'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\Question' => __DIR__ . '/../..' . '/app/Models/Question.php',
         'App\\Models\\QuestionType' => __DIR__ . '/../..' . '/app/Models/QuestionType.php',
         'App\\Models\\StudentAnswerQuestionExact' => __DIR__ . '/../..' . '/app/Models/StudentAnswerQuestionExact.php',
@@ -425,6 +438,7 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
+        'App\\Providers\\ComposerServiceProvider' => __DIR__ . '/../..' . '/app/Providers/ComposerServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Repositories\\Answer\\AnswerRepository' => __DIR__ . '/../..' . '/app/Repositories/Answer/AnswerRepository.php',
@@ -434,6 +448,8 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         'App\\Repositories\\EloquentRepository' => __DIR__ . '/../..' . '/app/Repositories/EloquentRepository.php',
         'App\\Repositories\\Notification\\NotificationRepository' => __DIR__ . '/../..' . '/app/Repositories/Notification/NotificationRepository.php',
         'App\\Repositories\\Notification\\NotificationRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/Notification/NotificationRepositoryInterface.php',
+        'App\\Repositories\\Post\\PostRepository' => __DIR__ . '/../..' . '/app/Repositories/Post/PostRepository.php',
+        'App\\Repositories\\Post\\PostRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/Post/PostRepositoryInterface.php',
         'App\\Repositories\\Question\\QuestionRepository' => __DIR__ . '/../..' . '/app/Repositories/Question/QuestionRepository.php',
         'App\\Repositories\\Question\\QuestionRepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/Question/QuestionRepositoryInterface.php',
         'App\\Repositories\\RepositoryInterface' => __DIR__ . '/../..' . '/app/Repositories/RepositoryInterface.php',
@@ -452,10 +468,12 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         'CreateAdminsTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_07_085643_create_admins_table.php',
         'CreateAnswersTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_07_090323_create_answers_table.php',
         'CreateCommentType' => __DIR__ . '/../..' . '/database/migrations/2017_08_22_073722_create_comment_type.php',
+        'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_08_073718_create_comments_table.php',
         'CreateCoursesTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_07_085857_create_courses_table.php',
         'CreateFollowStudentTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_07_090638_create_follow_student_table.php',
         'CreateNotificationTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_04_033430_create_notification_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2017_09_08_073108_create_posts_table.php',
         'CreateQuestionTypesTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_07_090047_create_question_types_table.php',
         'CreateQuestionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_07_090213_create_questions_table.php',
         'CreateStudentAnswerQuestionExactTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_07_090506_create_student_answer_question_exact_table.php',
@@ -4049,6 +4067,7 @@ class ComposerStaticInit487eec3394c4595fd6117a9f834f5e7b
         'Twig_TokenStream' => __DIR__ . '/..' . '/twig/twig/lib/Twig/TokenStream.php',
         'Twig_Util_DeprecationCollector' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Util/DeprecationCollector.php',
         'Twig_Util_TemplateDirIterator' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Util/TemplateDirIterator.php',
+        'Unisharp\\Ckeditor\\ServiceProvider' => __DIR__ . '/..' . '/unisharp/laravel-ckeditor/ServiceProvider.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',

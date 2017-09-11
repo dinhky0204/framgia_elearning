@@ -3,7 +3,7 @@
     <div class="container list-course-container">
         <div class="row">
             <div class="col-md-3">
-                <div class="panel panel-success">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             List language</h3>

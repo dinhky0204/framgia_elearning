@@ -6,4 +6,5 @@ return array(
     "courses" => "Courses",
     "users_list" => "User List",
     "question" => "Question",
+    "post" => "Posts",
 );
