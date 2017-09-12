@@ -41,6 +41,7 @@ class CommentController extends Controller {
     return response(Comment::where('id', $comment_id)->first());
   }
   public function editComment(Request $request, $comment_id) {
+//    dd($request->get('comment_content'));
     Comment::where('id', $comment_id)
       ->update(['content' => $request->get('comment_content')]);
     return response("edit ok");

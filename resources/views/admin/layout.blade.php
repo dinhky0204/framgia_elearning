@@ -51,6 +51,7 @@
     @yield('edit_question')
     @yield('create_answer')
     @yield('create_answer')
+    @yield('edit_post')
 </section>
 
 </body>

@@ -150,7 +150,7 @@ function editCourse() {
                 method: 'PUT',
                 data: {
                     'old_subject_id' : object.subject.id,
-                    'new_subject_id' : $('.selectpicker').val(),
+                    'new_subject_id' : $(".subject_id").val(),
                     'id' : $("#edit-course-id").val(),
                     'name' : $("#edit-course-name").val(),
                     'description' : $("textarea#edit-course-description").val()

@@ -921,8 +921,11 @@ new Vue({
         editComment: function editComment(edit_id) {
             var _this4 = this;
 
-            axios.post('/editComment/' + edit_id, this.$data).then(function (response) {
+            axios.patch('/createComments/' + edit_id, this.new_comment).then(function (response) {
                 _this4.fetchComments(_this4.post_id);
+                _this4.edit = false;
+                _this4.new_comment.comment_content = "";
+                console.log(response.data);
             });
         },
         removeComment: function removeComment(id) {

@@ -10,12 +10,14 @@ namespace App\Repositories\Post;
 
 
 use App\Models\Comment;
+use App\Models\Course;
 use App\Models\Post;
 use App\Models\User;
 use App\Repositories\EloquentRepository;
 use Carbon\Carbon;
 use Guzzle\Http\Message\PostFileInterface;
 use Illuminate\Http\Request;
+use Image;
 
 class PostRepository extends EloquentRepository implements PostRepositoryInterface
 {
@@ -29,20 +31,27 @@ class PostRepository extends EloquentRepository implements PostRepositoryInterfa
     public function createPost(Request $request)
     {
         $post = Post::create([
-           'title' => 'default',
+            'title' => $request->get('post_title'),
             'content' => $request->get('post_content'),
-            'course_id' => $request->get('post_course')
+            'course_id' => $request->get('post_course'),
+            'image' => 'book.jpg'
         ]);
-        if(!$post) {
-            return false;
+        if($request->hasFile('post_image')) {
+            $post_img = $request->file('post_image');
+            $filename = 'post' . $post->id . '.' . $post_img->getClientOriginalExtension();
+            Image::make($post_img)->resize(360, 238.234)->save(public_path('img/post/' . $filename));
+            Post::where('id', $post->id)
+                ->update(['image' => $filename]);
         }
-        else return true;
-
     }
 
     public function getPost()
     {
-        return Post::all();
+        $list_post = Post::all();
+        foreach ($list_post as $post) {
+            $post->course_name = Course::where('id', $post->course_id)->first()->name;
+        }
+        return $list_post;
     }
 
     public function getCommentOfPost($post_id)

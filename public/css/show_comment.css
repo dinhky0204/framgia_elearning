@@ -32,3 +32,19 @@
 .success-enter, .success-leave {
     opacity: 0;
 }
+#comment-box-input {
+    margin-bottom: 5%;
+}
+#comment-box-input img {
+    margin-top: -7%;
+}
+#comment-box-input button {
+    float: right;
+    background-color: #00a0df;
+}
+#comment-box-input .alert-success {
+    float: right;
+    font-size: 12px;
+    background-color: #00cc66;
+    color: #0000AA;
+}

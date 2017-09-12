@@ -21,29 +21,31 @@
             </div>
             <div class="col-md-8 col-md-offset-1 course-container">
                 @foreach($this_subject->courses as $course)
-                    <a href="{{route('course_user', $course->id)}}">
+                    <div>
                         <div class="col-md-4">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
+                                    <a href="{{route('course_user', $course->id)}}">
                                     <h3 class="panel-title">
                                         <?= $course->name ?></h3>
+                                        </a>
                                 </div>
                                 <ul class="list-group">
                                     <div class="box-course">
                                         <?= $course->desc ?>
                                     </div>
                                     @if(Auth::guest())
-                                        <div class="btn btn-primary follow-course-btn" value ="{{$course->id}}">View more</div>
+                                        <a href="#" class="btn btn-primary follow-course-btn" value ="{{$course->id}}">View more</a>
                                     @elseif($course->follow == 0)
-                                        <div class="btn btn-success follow-course-btn" value ="{{$course->id}}">Follow</div>
+                                        <a href="{{route('follow_course', $course->id)}}" class="btn btn-success follow-course-btn" value ="{{$course->id}}">Follow</a>
                                     @else
-                                        <div class="btn btn-danger unfollow-course-btn" value ="{{$course->id}}">Unfollow</div>
+                                        <a href="{{route('unfollow_course', $course->id)}}" class="btn btn-danger unfollow-course-btn" value ="{{$course->id}}">Unfollow</a>
                                     @endif
                                 </ul>
 
                             </div>
                         </div>
-                    </a>
+                    </div>
                 @endforeach
 
             </div>

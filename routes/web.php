@@ -46,8 +46,8 @@ Route::post('/course/{course_id}/test', 'Auth\CourseController@testCourse');
 Route::get('/course/{course_id}/learn', 'Auth\CourseController@learnCourse')->name('learn_course');
 Route::get('/course/{course_id}/test', 'Auth\CourseController@testCourse')->name('test_course');
 Route::get('list_course/{subject_id}', 'Auth\CourseController@listCourse')->name('list_course');
-Route::post('list_course/{subject_id}/follow', 'Auth\CourseController@followCourse')->name('follow_course');
-Route::post('list_course/{subject_id}', 'Auth\CourseController@unfollowCourse')->name('unfollow_course');
+Route::get('list_course/{course_id}/follow', 'Auth\CourseController@followCourse')->name('follow_course');
+Route::get('list_course/{course_id}/unfollow', 'Auth\CourseController@unfollowCourse')->name('unfollow_course');
 
 Route::get('/admin/questions', 'Admin\QuestionController@index')->name('admin_questions');
 Route::get('/admin/questions/{question_id}', 'Admin\QuestionController@editQuestion')->name('admin_edit_question');
@@ -60,14 +60,18 @@ Route::post('/admin/create_questions', 'Admin\QuestionController@checkCreateQues
 Route::get('/admin/show_post', 'Admin\PostController@index')->name('admin_show_posts');
 Route::get('/admin/create_post', 'Admin\PostController@createPost')->name('admin_create_posts');
 Route::post('/admin/create_post/save', 'Admin\PostController@savePost')->name('admin_save_posts');
+Route::get('/admin/edit_post/{post_id}', 'Admin\PostController@editPost')->name('admin_edit_post');
+Route::post('/admin/edit_post/{post_id}', 'Admin\PostController@updatePost')->name('admin_update_post');
+Route::get('/admin/delete_post/{post_id}', 'Admin\PostController@deletePost')->name('admin_delete_post');
 
 Route::get('/admin/login', 'Admin\LoginController@index');
 Route::post('/admin/login', 'Admin\LoginController@login')->name('admin_login');
 Route::get('/admin/logout', 'Admin\LoginController@adminLogout')->name('admin_logout');
 
 Route::post('/createComments/{post_id}', 'Auth\CommentController@store');
+//Route::patch('/createComments/{post_id}', 'Auth\CommentController@editComment');
 Route::get('/comment/{comment_id}', 'Auth\CommentController@getComment');
-Route::post('/editComment/{comment_id}', 'Auth\CommentController@editComment');
+Route::patch('/createComments/{post_id}', 'Auth\CommentController@editComment');
 Route::delete('/deleteComment/{comment_id}', 'Auth\CommentController@deleteComment');
 Route::get('/getcomments/{post_id}', 'Auth\CommentController@index');
 Route::get('/list_post/{course_id}', 'Auth\PostController@postOfCourse')->name('posts_of_course');

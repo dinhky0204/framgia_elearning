@@ -1,13 +1,14 @@
 @extends('admin.layout')
-@section('questions')
-    {!! Form::open((['action' => ['Admin\PostController@savePost'], 'method' => 'post', 'files' => true])) !!}
-    {{ csrf_field() }}
-
+@section('edit_post')
     <div id="main-content">
         <section class="wrapper">
+            {!! Form::open((['action' => ['Admin\PostController@updatePost', $post->id], 'method' => 'post', 'files' => true])) !!}
+            {{ csrf_field() }}
             <div class="col-md-6">
                 <label for="post_title" class="control-label">Post title:</label>
-                <textarea class="form-control" name="post_title" required></textarea>
+                <textarea class="form-control" name="post_title" required>
+                    {{$post->title}}
+                </textarea>
             </div>
 
             <div class="col-md-3">
@@ -21,22 +22,22 @@
             </div>
             <div class="col-md-2">
                 <img id="new-post-img"
-                     src="/img/post/book.jpg" alt="your image"
+                     src="/img/post/{{$post->image}}" alt="your image"
                      style="height: 100px; width: 100px"/>
                 <input id="post-img" type='file'
                        onchange="readURL(this);" name="post_image"
                        multiple>
             </div>
-
         </section>
-        <label for="">Post Content</label>
-        <textarea name="post_content" id="post-ckeditor" cols="30" rows="20"></textarea>
-        <button type="submit" class="btn btn-success col-md-offset-5" style="margin-top: 2%">Create</button>
+        <input id="test-post" type="hidden" value="{{$post->content}}">
+        <textarea name="post_content" id="post-ckeditor-edit" cols="30" rows="30"></textarea>
+        <button type="submit" class="btn btn-success col-md-offset-5" style="margin-top: 2%">Update</button>
+        {!! Form::close() !!}
     </div>
-
-    {!! Form::close()!!}
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace( 'post-ckeditor');
+        var t = $("#test-post").val();
+        CKEDITOR.replace( 'post-ckeditor-edit');
+        CKEDITOR.instances['post-ckeditor-edit'].setData(t);
     </script>
 @endsection

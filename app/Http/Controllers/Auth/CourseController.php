@@ -100,30 +100,20 @@ class CourseController
         }
         return view('auth.listCourse',['subjects' => $subjects, 'this_subject' => $this_subject, 'subject_id' => $subject_id]);
     }
-    public function followCourse(Request $request) {
+    public function followCourse($course_id) {
         $user = Auth::user();
-        if($request->ajax()) {
-            $course_id = intval($request->course_id);
-            $tmp = StudentCourseEnrollment::where('course_id', $course_id)
-                ->where('user_id', $user['id'])->count();
-            if(!$tmp) {
-                StudentCourseEnrollment::create([
-                    'progress' => 0,
-                    'course_id' => $course_id,
-                    'user_id' => $user['id']
-                ]);
-            }
-            return response('Request follow ok');
-        }
+        StudentCourseEnrollment::create([
+            'progress' => 0,
+            'course_id' => $course_id,
+            'user_id' => $user['id']
+        ]);
+        return redirect()->back();
     }
-    public function unfollowCourse(Request $request) {
+    public function unfollowCourse($course_id) {
         $user = Auth::user();
-        if($request->ajax()) {
-            $course_id = intval($request->course_id);
-            $tmp = StudentCourseEnrollment::where('course_id', $course_id)
-                ->where('user_id', $user['id'])->delete();
-            return response('Request unfollow ok');
-        }
+        StudentCourseEnrollment::where('course_id', $course_id)
+            ->where('user_id', $user['id'])->delete();
+        return redirect()->back();
     }
     public function learnCourse($course_id) {
         $data = $this->courseRepository->getContentToLearn($course_id);

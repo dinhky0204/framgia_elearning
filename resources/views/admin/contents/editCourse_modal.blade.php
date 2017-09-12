@@ -13,7 +13,7 @@
                 <form class="update-course">
                     <div class="row-fluid">
                         <label for="name" class="control-label">Language</label> <br>
-                        <select class="selectpicker show-tick" data-show-subtext="true" data-live-search="true" data-style="btn btn-success">
+                        <select  class="subject_id" data-show-subtext="true" data-live-search="true" data-style="btn btn-success">
                             @foreach($subjects as $subject)
                                 <option value="{{$subject->id}}"><?=$subject->name ?></option>
                             @endforeach

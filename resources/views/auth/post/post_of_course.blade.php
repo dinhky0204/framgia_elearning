@@ -13,7 +13,7 @@
                         @foreach($list_post as $post)
                         <div class="col-lg-6 col-md-6">
                             <aside>
-                                <img src="https://lh3.googleusercontent.com/-ndZJOGgvYQ4/WM1ZI8dH86I/AAAAAAAADeo/l67ZqZnRUO8QXIQi38bEXuxqHfVX0TV2gCJoC/w424-h318-n-rw/thumbnail8.jpg"
+                                <img src="/img/post/{{$post->image}}"
                                      class="img-responsive">
                                 <div class="content-title">
                                     <div class="text-center">
