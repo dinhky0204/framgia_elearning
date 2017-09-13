@@ -63,6 +63,8 @@ Route::post('/admin/create_post/save', 'Admin\PostController@savePost')->name('a
 Route::get('/admin/edit_post/{post_id}', 'Admin\PostController@editPost')->name('admin_edit_post');
 Route::post('/admin/edit_post/{post_id}', 'Admin\PostController@updatePost')->name('admin_update_post');
 Route::get('/admin/delete_post/{post_id}', 'Admin\PostController@deletePost')->name('admin_delete_post');
+Route::get('/admin/create_question_component', 'Admin\QuestionController@test')->name('create_question');
+Route::post('/admin/create_question', 'Admin\QuestionController@create');
 
 Route::get('/admin/login', 'Admin\LoginController@index');
 Route::post('/admin/login', 'Admin\LoginController@login')->name('admin_login');

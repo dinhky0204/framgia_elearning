@@ -823,12 +823,8 @@ module.exports = g;
 
 /***/ }),
 /* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Comments_vue__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Comments_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Comments_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -839,28 +835,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__(31);
 
 window.Vue = __webpack_require__(42);
+// import Comments from './components/Comments.vue';
+Vue.component('example', __webpack_require__(39));
+Vue.component('comments', __webpack_require__(38));
 
-// Vue.http.headers.common['X-CSRF-TOKEN'] = Laravel.csrfToken;
-// new Vue({
-//     el: "#app",
-//
-//     data: {
-//         comment_content: "abc",
-//         user_name: "",
-//         errors: {}
-//     },
-//     // created () {
-//     //     this.fetchComments();
-//     // },
-//     methods: {
-//         onSubmit() {
-//             axios.post('/comments', this.$data);
-//         },
-//         // fetchComments() {
-//         //     axios.get('/comments', this.$data);
-//         // }
-//     }
-// });
+new Vue({
+    el: "#test_app",
+    data: function data() {
+        return {
+            question_content: "",
+            question_type: 1,
+            list_tag: [],
+            list_content: [],
+            total_answer: 1,
+            question_point: 1,
+            correct: 1,
+            course: 1,
+            data_response: "",
+            image: [{ link: "" }],
+            status: false
+        };
+    },
+
+    methods: {
+        createQuestion: function createQuestion() {
+            var _this = this;
+
+            axios.post('/admin/create_question', this.$data).then(function (response) {
+                // console.log(response.data);
+                // console.log(response.data);
+                _this.data_response = response.data;
+                if (_this.data_response == 'success') {
+                    _this.question_content = "";
+                    _this.total_answer = 1;
+                    _this.question_point = 1;
+                    _this.correct = 1;
+                    _this.course = 1;
+                    _this.image = [{ link: "" }];
+                    _this.list_tag = [];
+                    _this.list_content = [];
+                    _this.status = true;
+                }
+            });
+        },
+        onFileChange: function onFileChange(e) {
+            var _this2 = this;
+
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(e.target.files[0]);
+            // console.log(fileReader)
+            fileReader.onload = function (e) {
+                _this2.image.push({ link: e.target.result });
+            };
+            // console.log(this.image)
+        }
+    }
+});
 
 new Vue({
     el: '#list_comment',
@@ -888,20 +918,20 @@ new Vue({
 
     methods: {
         fetchComments: function fetchComments(id) {
-            var _this = this;
+            var _this3 = this;
 
             axios.get('/getcomments/' + id).then(function (response) {
-                _this.comments = response.data;
+                _this3.comments = response.data;
             }).catch(function (error) {
                 console.log(error);
             });
         },
         onSubmit: function onSubmit() {
-            var _this2 = this;
+            var _this4 = this;
 
             axios.post('/createComments/' + this.post_id, this.new_comment).then(function (response) {
-                _this2.fetchComments(_this2.post_id);
-                _this2.new_comment.comment_content = "";
+                _this4.fetchComments(_this4.post_id);
+                _this4.new_comment.comment_content = "";
             });
             self = this;
             this.success = true;
@@ -910,21 +940,21 @@ new Vue({
             }, 4000);
         },
         showComment: function showComment(id) {
-            var _this3 = this;
+            var _this5 = this;
 
             this.edit = true;
             this.comment_edit_id = id;
             axios.get('/comment/' + id).then(function (response) {
-                _this3.new_comment.comment_content = response.data.content;
+                _this5.new_comment.comment_content = response.data.content;
             });
         },
         editComment: function editComment(edit_id) {
-            var _this4 = this;
+            var _this6 = this;
 
             axios.patch('/createComments/' + edit_id, this.new_comment).then(function (response) {
-                _this4.fetchComments(_this4.post_id);
-                _this4.edit = false;
-                _this4.new_comment.comment_content = "";
+                _this6.fetchComments(_this6.post_id);
+                _this6.edit = false;
+                _this6.new_comment.comment_content = "";
                 console.log(response.data);
             });
         },
@@ -1788,28 +1818,14 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 29 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
 //
 //
 //
-//
-//
-//
-//
-//
-
-props: ['comment'];
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component Comment mounted.');
-  }
-});
 
 /***/ }),
 /* 30 */
@@ -1817,8 +1833,6 @@ props: ['comment'];
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Comment_vue__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Comment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Comment_vue__);
 //
 //
 //
@@ -1835,36 +1849,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      comments: []
-    };
-  },
-
-  components: { Comment: __WEBPACK_IMPORTED_MODULE_0__Comment_vue___default.a },
-  created: function created() {
-    this.fetchComments();
-  },
-  mounted: function mounted() {
-    console.log(comments);
-  },
-
-  methods: {
-    fetchComments: function fetchComments() {
-      //        axios.get('/comments', this.$data);
-      this.$http.get('/comments', function (data) {
-        this.$set('comments', data);
-      });
+    mounted: function mounted() {
+        console.log('Component mounted.');
     }
-  },
-  ready: function ready() {
-    this.fetchComments();
-  }
 });
 
 /***/ }),
@@ -36787,40 +36776,6 @@ var Component = __webpack_require__(7)(
   /* script */
   __webpack_require__(29),
   /* template */
-  __webpack_require__(40),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/opt/lampp/htdocs/framgia_elearning/resources/assets/js/components/Comment.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Comment.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-707c0afc", Component.options)
-  } else {
-    hotAPI.reload("data-v-707c0afc", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(7)(
-  /* script */
-  __webpack_require__(30),
-  /* template */
   __webpack_require__(41),
   /* scopeId */
   null,
@@ -36848,17 +36803,65 @@ module.exports = Component.exports
 
 
 /***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(7)(
+  /* script */
+  __webpack_require__(30),
+  /* template */
+  __webpack_require__(40),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/opt/lampp/htdocs/framgia_elearning/resources/assets/js/components/Example.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7f4cb087", Component.options)
+  } else {
+    hotAPI.reload("data-v-7f4cb087", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v("\n    " + _vm._s(_vm.comment.user_name) + "\n  ")]), _vm._v(" "), _c('td', [_vm._v("\n    " + _vm._s(_vm.comment.content) + "\n  ")])])
-},staticRenderFns: []}
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-707c0afc", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-7f4cb087", module.exports)
   }
 }
 
@@ -36867,13 +36870,9 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {}, [_c('table', {
-    staticClass: "table table-striped"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.comments), function(comment) {
-    return _c('tr', [_c('td', [_vm._v("@" + _vm._s(comment.user_id))]), _vm._v(" "), _c('td', [_vm._v("@" + _vm._s(comment.comment_content))])])
-  }))])])
+  return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("User")]), _vm._v(" "), _c('th', [_vm._v("Comment")])])])
+  return _c('tr', [_c('td', [_vm._v("t1")]), _vm._v(" "), _c('td', [_vm._v("t2")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

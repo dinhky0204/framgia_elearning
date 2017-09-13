@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use App\Models\Course;
 use App\Models\Question;
 use App\Models\QuestionType;
@@ -77,5 +78,53 @@ class QuestionController extends Controller
         $this->questionRepository->deleteQuestion($question_id);
         $this->questionRepository->updateQuestion($request, $question_id);
         return redirect()->back();
+    }
+    public function test() {
+        return view('admin.contents.test_component', [
+            'list_course' => Course::all(),
+            'list_type' => QuestionType::all()
+        ]);
+    }
+    public function create(Request $request) {
+//        dd($request->all());
+        $correct = 0;
+        $list_tag = $request->get('list_tag');
+        $list_content = $request->get('list_content');
+        $list_image = $request->get('image');
+        $question = Question::create([
+            'question_content' => $request->get('question_content'),
+            'point' => $request->get('question_point'),
+            'course_id' => $request->get('course'),
+            'total_answer' => $request->get('total_answer'),
+            'description' => "Default",
+            'question_type_id' => $request->get('question_type')
+        ]);
+        for ($i=0; $i<$request->get('total_answer'); $i++) {
+            if (($i+1)==$request->get('correct')) {
+                $correct = 1;
+            }
+            else $correct = 0;
+            $answer = Answer::create([
+                'tag' => $list_tag[$i],
+                'answer_content' => $list_content[$i],
+                'correct' => $correct,
+                'question_id' => $question->id,
+                'desc' => 'default.jpg'
+            ]);
+            if(($i+1) < sizeof($list_image)) {
+                $exploded = explode(',', $list_image[$i+1]['link']);
+                $decoded = base64_decode($exploded[1]);
+                if(str_contains($exploded[0], 'jpeg'))
+                    $extension = 'jpg';
+                else
+                    $extension = 'png';
+                $filename = 'answer' . $answer->id . '.' . $extension;
+                $path = public_path() . '/img/answer_image/' . $filename;
+                file_put_contents($path, $decoded);
+                $answer->desc = $filename;
+                $answer->save();
+            }
+        }
+        return response('success');
     }
 }

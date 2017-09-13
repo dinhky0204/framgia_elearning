@@ -11,7 +11,7 @@
                         </header>
                         <br>
                         <br>
-                        <a href="{{route('admin_create_question')}}" class="btn btn-primary">Create Question</a>
+                        <a href="{{route('create_question')}}" class="btn btn-primary">Create Question</a>
                         <table class="table table-striped table-advance table-hover">
                             <tbody>
                             <tr>

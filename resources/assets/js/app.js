@@ -8,28 +8,61 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import Comments from './components/Comments.vue';
-// Vue.http.headers.common['X-CSRF-TOKEN'] = Laravel.csrfToken;
-// new Vue({
-//     el: "#app",
-//
-//     data: {
-//         comment_content: "abc",
-//         user_name: "",
-//         errors: {}
-//     },
-//     // created () {
-//     //     this.fetchComments();
-//     // },
-//     methods: {
-//         onSubmit() {
-//             axios.post('/comments', this.$data);
-//         },
-//         // fetchComments() {
-//         //     axios.get('/comments', this.$data);
-//         // }
-//     }
-// });
+// import Comments from './components/Comments.vue';
+Vue.component('example', require('./components/Example.vue'));
+Vue.component('comments', require('./components/Comments.vue'));
+
+new Vue({
+    el: "#test_app",
+    data() {
+        return {
+            question_content: "",
+            question_type: 1,
+            list_tag: [],
+            list_content: [],
+            total_answer: 1,
+            question_point: 1,
+            correct: 1,
+            course: 1,
+            data_response: "",
+            image: [
+                {link: ""}
+            ],
+            status: false
+        }
+    },
+    methods: {
+        createQuestion() {
+            axios.post('/admin/create_question', this.$data).
+                then(response => {
+                    // console.log(response.data);
+                // console.log(response.data);
+                this.data_response = response.data;
+                if (this.data_response=='success') {
+                    this.question_content = ""
+                    this.total_answer = 1
+                    this.question_point = 1
+                    this.correct = 1
+                    this.course = 1
+                    this.image = [{link: ""}]
+                    this.list_tag= []
+                    this.list_content= []
+                    this.status = true
+                }
+            });
+        },
+        onFileChange(e) {
+            var fileReader = new FileReader()
+            fileReader.readAsDataURL(e.target.files[0])
+            // console.log(fileReader)
+            fileReader.onload = (e) => {
+                this.image.push({link: e.target.result})
+            }
+            // console.log(this.image)
+        }
+
+    }
+});
 
 new Vue({
     el: '#list_comment',
