@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
         DB::table('courses')->insert([
             'name' => 'Tiếng Anh sơ cấp',
             'hidden' => false,
-            'total_question' => 0,
+            'total_question' => 5,
             'subject_id' => 1,
             'admin_id' => 1,
             'desc' => 'Khóa học sẽ giúp bạn nắm được những kiến thức cơ bản nhất trong tiếng Anh bao gồm các từ vựng đơn giản, các câu giao tiếp cơ bản bằng tiếng anh',
@@ -236,6 +236,18 @@ class DatabaseSeeder extends Seeder
             'correct' => 0,
             'question_id' => 5,
             'desc' => 'answer20.jpg',
+        ]);
+        DB::table('posts')->insert([
+            'title' => 'title1',
+            'content' => 'content1',
+            'course_id' => '1',
+            'image' => 'book.jpg'
+        ]);
+        DB::table('posts')->insert([
+            'title' => 'title2',
+            'content' => 'content2',
+            'course_id' => '1',
+            'image' => 'post2.png'
         ]);
     }
 }
