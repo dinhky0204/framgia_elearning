@@ -99,6 +99,9 @@ class QuestionController extends Controller
             'description' => "Default",
             'question_type_id' => $request->get('question_type')
         ]);
+        $course = Course::where('id', $request->get('course'))->first();
+        $course->total_question = $course->total_question + 1;
+        $course->save();
         for ($i=0; $i<$request->get('total_answer'); $i++) {
             if (($i+1)==$request->get('correct')) {
                 $correct = 1;

@@ -27,4 +27,6 @@
             </div>
         </div>
     </div>
+    {{ HTML::script('/assets/bower/jquery/dist/jquery.min.js') }}
+
 @endsection

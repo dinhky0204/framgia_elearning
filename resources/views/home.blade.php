@@ -40,7 +40,7 @@
                             <span>Học một ngôn ngữ đòi hỏi một quá trình luyện tập hàng ngày.</span>
                         </div>
                     </div>
-                    <label for="" style ="color: #000000;">Tiến độ hiện tại</label>
+                    <label for="" style ="color: #000000;">Tiến độ hiện tại: {{$progress}}%</label>
                     <br>
                     <div class="progress-wrap progress" data-progress-percent="{{$progress}}">
                         <div class="progress-bar progress"></div>

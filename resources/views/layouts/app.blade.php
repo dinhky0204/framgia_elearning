@@ -171,6 +171,7 @@
 <script src="{{ asset('js/login.js') }}"></script>
 <script src="{{ asset('js/notification.js') }}"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{ HTML::script('/js/test_course.js') }}
 <script>
     var user = <?php echo Auth::user() ?> ;
     Echo.channel('notification')
