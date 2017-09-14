@@ -235,7 +235,7 @@ class DatabaseSeeder extends Seeder
             'answer_content' => 'Headphone',
             'correct' => 0,
             'question_id' => 5,
-            'desc' => 'answer20.jpg'
+            'desc' => 'answer20.jpg',
         ]);
     }
 }
