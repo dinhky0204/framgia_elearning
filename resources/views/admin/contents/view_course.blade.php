@@ -25,7 +25,7 @@
                             <input id="list_question" type="hidden" value="{{$list_question}}">
                             @foreach($list_question as $key => $question)
 
-                                <tr data-toggle="collapse" id="collap{{$question->id}}" class="success">
+                                <tr data-toggle="collapse" id="collap{{$question->id}}" class="success ">
                                     <td> {{ $question->question_content }} </td>
                                     <td> {{ $question->description }} </td>
                                     <td> {{ $question->total_answer }}</td>
@@ -35,7 +35,7 @@
                                     <td colspan="12">
                                         {!! Form::open(['action' => ['Admin\QuestionController@checkeditQuestion', $question->id], 'method' => 'post', 'files' => true]) !!}
                                         <div class="table-answer">
-                                            <table class="collapse" id="collap-content{{$question->id}}">
+                                            <table class="collapse list-answer" id="collap-content{{$question->id}}">
                                                 <tbody>
                                                 <tr>
                                                     <th><i class="icon_tags"></i>Tag</th>
@@ -189,4 +189,10 @@
             <!-- page end-->
         </section>
     </section>
+    <style>
+        .list-answer {
+            margin-left: 180px;
+            margin-top: 50px;
+        }
+    </style>
 @endsection
